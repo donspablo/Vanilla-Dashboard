@@ -1,4 +1,5 @@
 ![image](https://user-images.githubusercontent.com/6468571/152180948-7c0b5986-8e19-4fb0-8da2-34602d6bb5da.png)
+![image](https://user-images.githubusercontent.com/6468571/152596991-14e22c01-f810-49a0-8785-9992e7b909ce.png)
 
 ![Known Vulnerabilities](https://snyk.io/test/github/donPabloNow/Vanilla-Dashboard/badge.svg)
 
