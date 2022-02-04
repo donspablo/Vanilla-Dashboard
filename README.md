@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/6468571/152599950-92abd41e-50fb-4ce1-897b-b4e872bb8d56.png)
+![image](https://user-images.githubusercontent.com/6468571/152600437-74373604-c957-40a6-9601-117f463dc323.png)
 # The Vanilla Dashboard Project
 
 🍦 The Vanilla Dashboard is a Vanilla JavaScript dashboard that connects to a.txt file-based database through PHP.
