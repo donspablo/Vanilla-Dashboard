@@ -1,0 +1,101 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vanilla Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" rel="stylesheet">
+    <link href="./css/styles.css" rel="stylesheet">
+    <link href="./apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="./favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="./favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+    <link href="./site.webmanifest" rel="manifest">
+</head>
+<body>
+<div class="card">
+    <div class="section login">
+        <div class="container">
+            <div class="row full-height justify-content-center">
+                <div class="col-12 text-center align-self-center py-5">
+                    <div class="section pb-5 pt-5 pt-sm-2 text-center"><h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span>
+                    </h6> <input class="checkbox" id="reg-log" name="reg-log" type="checkbox"/> <label
+                            for="reg-log"></label>
+                        <div class="card-3d-wrap mx-auto">
+                            <div class="card-3d-wrapper">
+                                <div class="card-front">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <div class="form-group"><input autocomplete="off" class="form-style"
+                                                                           id="logemail" name="logemail"
+                                                                           placeholder="Your Email" type="email"> <i
+                                                    class="input-icon uil uil-at"></i></div>
+                                            <div class="form-group mt-2"><input autocomplete="off" class="form-style"
+                                                                                id="logpass" name="logpass"
+                                                                                placeholder="Your Password"
+                                                                                type="password"> <i
+                                                    class="input-icon uil uil-lock-alt"></i></div>
+                                            <p><a class="btn mt-4" href="#">submit</a></p><br/>
+                                            <p class="mb-0 mt-4 text-center"><a class="link" href="#0">Forgot your
+                                                password?</a></p></div>
+                                    </div>
+                                </div>
+                                <div class="card-back">
+                                    <div class="center-wrap">
+                                        <div class="section text-center">
+                                            <div class="form-group"><input autocomplete="off" class="form-style"
+                                                                           id="logname" name="logname"
+                                                                           placeholder="Your Full Name" type="text"> <i
+                                                    class="input-icon uil uil-user"></i></div>
+                                            <div class="form-group mt-2"><input autocomplete="off" class="form-style"
+                                                                                name="logemail" placeholder="Your Email"
+                                                                                type="email"> <i
+                                                    class="input-icon uil uil-at"></i></div>
+                                            <div class="form-group mt-2"><input autocomplete="off" class="form-style"
+                                                                                name="logpass"
+                                                                                placeholder="Your Password"
+                                                                                type="password"> <i
+                                                    class="input-icon uil uil-lock-alt"></i></div>
+                                            <a class="btn mt-4" href="javascript:void()">submit</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+<p><a class="don" href="https://donPabloNow.com/" target="_blank">@donPaboNow</a></p>
+<div id="intro">
+    <section class="nav"><h1>Vanilla Dashboard</h1>
+        <h3 class="span loader"><span class="m">C</span> <span class="m">O</span> <span class="m">N</span> <span
+                class="m">N</span> <span class="m">E</span> <span class="m">C</span> <span class="m">T</span> <span
+                class="m"></span> <span class="m">t</span> <span class="m">o</span> <span class="m"> </span> <span
+                class="m">E</span> <span class="m">V</span> <span class="m">E</span> <span class="m">Y</span> <span
+                class="m">T</span> <span class="m">H</span> <span class="m">I</span> <span class="m">N</span> <span
+                class="m">G</span> </h3>
+        <div class="nav-container"><a class="nav-tab" href="#reg-log">HOME</a> <a class="nav-tab" href="#tab-graphql">DASHBOARD</a>
+            <a class="nav-tab" href="#tab-next">CHAT</a> <a class="nav-tab" href="#tab-typescript">TASKS</a> <a
+                    class="nav-tab" href="#tab-deno">NOTES</a> <span class="nav-tab-slider"></span></div>
+    </section>
+    <main class="main">
+        <section class="slider" id="tab-pwa"></section>
+        <section class="slider" id="tab-graphql"><h1>DASHBOARD</h1>
+            <h2>Who is Online? Live Update coming soon!</h2></section>
+        <section class="slider" id="tab-next"><h1>CHAT</h1>
+            <h2>Stay connected and in the loop, Live Chat coming soon!</h2></section>
+        <section class="slider" id="tab-typescript"><h1>TASKS</h1>
+            <h2>Got things todo? Live Tasks coming soon!</h2></section>
+        <section class="slider" id="tab-deno"><h1>NOTES</h1>
+            <h2>Got important things to remember? Live Notes coming soon!</h2></section>
+    </main>
+    <canvas class="background" height="226" style="width: 100%; height: 100%;" width="1903"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./js/script.js"></script>
+</body>
+</html>
