@@ -7,6 +7,14 @@ ini_set('session.cookie_httponly', true);            // Helps mitigate xss
 ini_set('session.session.use_only_cookies', true);    // Prevents session fixation
 ini_set('session.cookie_lifetime', false);            // Smaller exploitation window for xss/csrf/clickjacking...
 ini_set('session.cookie_secure', true);                // Owasp a9 violations
+
+
+ini_set('SMTP',$ENV['SMTP']);
+ini_set('smtp_port',$ENV['smtp_port']);
+ini_set('username',$ENV['username']);
+ini_set('password',$ENV['password']);
+ini_set('sendmail_from',$ENV['sendmail_from']);
+
 if (!isset($_SESSION)) session_start();
 // Start Sessions                // Session Start
 

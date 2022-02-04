@@ -81,10 +81,6 @@ class registerSW {
 class registerMain {
     static go() {
         Particles.init({selector: ".background"});
-        $(".btn").click(function () {
-            $('html').addClass('login');
-
-        });
         var particles = Particles.init({
             selector: ".background",
             color: ["#03dac6", "#ff0266", "#000000"],
@@ -395,5 +391,53 @@ class binary_circle {
     }
 }
 
+
+$("form :input[required='required']").blur(function () {
+    if (!$(this).val()) {
+        $(this).addClass('hasError');
+    } else {
+        if ($(this).hasClass('hasError')) {
+            $(this).removeClass('hasError');
+        }
+    }
+});
+$("form :input[required='required']").change(function () {
+    if ($(this).hasClass('hasError')) {
+        $(this).removeClass('hasError');
+    }
+});
+
+/** ******************************
+ * Textarea Resize
+ ****************************** **/
+if ($(".autosize").length > 0) {
+    $(".autosize").each(function () {
+        resizeTextArea($(this));
+    });
+}
+
+var signoutNotification = null;
+$('#signout').click(function (e) {
+    e.preventDefault();
+    if (Meowsa.isDismissed(signoutNotification)) {
+        signoutNotification = Meowsa.addNotification({
+            color: 'default',
+            title: accountSignOutTitle,
+            text: accountSignOutText,
+            icon: '<i class="fa fa-sign-out fa-lg"></i>',
+            button: '<a href="index.php?action=signout" class="btn btn-success btn-meowsa">' + yesOption + '</a> <span id="cancel-signout" class="btn btn-warning btn-meowsa btn-close-notification">' + cancelOption + '</span>',
+            timeout: null
+        });
+    }
+});
+
 sssl(['./js/includes/newNote.js', './js/includes/newTask.js', './js/includes/notes.js', './js/includes/profile.js', './js/includes/signIn.js', './js/includes/signOut.js', './js/includes/viewNote.js', './js/includes/viewTask.js'], function () {
+});
+
+
+$(".btn").click(function () {
+    setTimeout(5000, function () {
+        $('html').addClass('login');
+        alert("activating demo login!")
+    })
 });

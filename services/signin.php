@@ -2,8 +2,11 @@
 
 namespace vandash\services;
 
-use vandash\includes\Functions;
+
+use vandash\includes\functions;
 use vandash\includes\txtDB;
+use vandash\includes\aacompositewhereclause;
+use vandash\includes\simplewhereclause;
 
 class signin
 {
@@ -15,19 +18,19 @@ class signin
         $mode = $_POST['requestType'];
         switch ($mode) {
             case 'signin':
-                signin($db, $_POST['username'], $_POST['password']);
+                $this->signin($db, $_POST['username'], $_POST['password']);
                 break;
             case 'signup':
-                signup($db, $_ENV['SITE_NAME'], $_ENV['SITE_URL'], $_ENV['SITE_EMAIL'], $_POST['username'], $_POST['useremail'], $_POST['password']);
+                $this->signup($db, $_ENV['SITE_NAME'], $_ENV['SITE_URL'], $_ENV['SITE_EMAIL'], $_POST['username'], $_POST['useremail'], $_POST['password']);
                 break;
             case 'resetpass':
-                resetpass($db, $_ENV['SITE_NAME'], $_ENV['SITE_URL'], $_ENV['SITE_EMAIL'], $_POST['useremail']);
+                $this->resetpass($db, $_ENV['SITE_NAME'], $_ENV['SITE_URL'], $_ENV['SITE_EMAIL'], $_POST['useremail']);
                 break;
             case 'usercheck':
-                usercheck($db, $_POST['username']);
+                $this->usercheck($db, $_POST['username']);
                 break;
             case 'emailcheck':
-                emailcheck($db, $_POST['useremail']);
+                $this->emailcheck($db, $_POST['useremail']);
                 break;
         }
 
@@ -37,11 +40,11 @@ class signin
     {
 
         $usrname = htmlspecialchars($username);
-        $pass = encodeIt($password);
+        $pass = functions::encodeIt($password);
 
-        $compClause = new AndWhereClause();
-        $compClause->add(new SimpleWhereClause(USERNAME, '=', $usrname, $_ENV['STRING_COMPARISON']));
-        $compClause->add(new SimpleWhereClause(PASSWORD, '=', $pass, $_ENV['STRING_COMPARISON']));
+        $compClause = new aacompositewhereclause();
+        $compClause->add(new simplewhereclause($usrname, '=', $usrname, $_ENV['STRING_COMPARISON']));
+        $compClause->add(new simplewhereclause($pass, '=', $pass, $_ENV['STRING_COMPARISON']));
         $userdata = $db->selectWhere('users.txt', $compClause, 1);
 
         foreach ($userdata as $item => $row) {
@@ -61,9 +64,9 @@ class signin
         define('USER_EMAIL', 3);
         define('DATE_CREATED', 4);
 
-        $usrname = htmlspecialchars(alphaNum($username));
+        $usrname = htmlspecialchars(functions::alphaNum($username));
         $usremail = htmlspecialchars($useremail);
-        $pass = encodeIt($password);
+        $pass = functions::encodeIt($password);
         $dateCreated = date('Y-m-d H:i:s');
 
         $randomHash = uniqid(rand());
@@ -135,7 +138,7 @@ class signin
 
         $userdata = $db->selectWhere(
             'users.txt',
-            new SimpleWhereClause(USER_EMAIL, '=', $useremail)
+            new simplewhereclause(USER_EMAIL, '=', $useremail)
         );
 
         if (empty($userdata)) {
@@ -159,7 +162,7 @@ class signin
                 'users.txt', [
                 PASSWORD => $newpass,
             ],
-                new SimpleWhereClause(
+                new simplewhereclause(
                     USER_ID, '=', $uid
                 )
             );
@@ -198,7 +201,7 @@ class signin
         define('USER_EMAIL', 3);
         define('DATE_CREATED', 4);
 
-        $usrname = htmlspecialchars(alphaNum($username));
+        $usrname = htmlspecialchars(functions->alphaNum($username));
 
         $userdata = $db->selectWhere(
             'users.txt',
@@ -233,4 +236,4 @@ class signin
     }
 }
 
-if (isset($_GET['singin'])) new singin();
+if (isset($_GET['signin'])) new signin();

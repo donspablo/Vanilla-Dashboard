@@ -3,7 +3,6 @@
 namespace vandash\services;
 
 
-use vandash\includes\Functions;
 use vandash\includes\txtDB;
 
 class viewnote
@@ -11,12 +10,16 @@ class viewnote
     public function __construct()
     {
         $db = new txtDB();
+        /** @noinspection GlobalVariableUsageInspection */
         $db->datadir = $_ENV['APP_DIR'] . '/data/notes/';
 
-
+        /** @noinspection GlobalVariableUsageInspection */
         $noteTitle = htmlspecialchars($_POST['noteTitle']);
-        $notesText = encodeIt($_POST['notesText']);
+        /** @noinspection GlobalVariableUsageInspection */
+        $notesText = $this->encodeIt($_POST['notesText']);
+        /** @noinspection GlobalVariableUsageInspection */
         $noteId = htmlspecialchars($_POST['noteId']);
+        /** @noinspection GlobalVariableUsageInspection */
         $updatDate = htmlspecialchars($_POST['updatDate']);
         $now = date('Y-m-d H:i:s');
 
@@ -44,6 +47,8 @@ class viewnote
 
         if ($checkDate > $updatDate) echo '1'; else  echo '0';
     }
+
 }
 
+/** @noinspection GlobalVariableUsageInspection */
 if (isset($_GET['viewnote'])) new viewnote();

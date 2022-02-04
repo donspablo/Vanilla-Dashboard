@@ -5,9 +5,9 @@
 
 namespace vandash;
 
-$_services = scandir((dirname(__FILE__)  . '/config/'));
-foreach (array_splice($_services, 3) as $service) {
-    require((dirname(__FILE__)  . '/config/' . $service));
+$_configs = scandir((dirname(__FILE__) . '/config/'));
+foreach (array_splice($_configs, 3) as $config) {
+    require((dirname(__FILE__) . '/config/' . $config));
 }
 
 use vandash\config\dotenv;
@@ -22,9 +22,9 @@ define('PEPPER', $_ENV['PEPPER']);
 define('KEY', $_ENV['KEY']);
 
 
-$_services = scandir((dirname(__FILE__)  . '/includes/'));
-foreach (array_splice($_services, 3) as $service) {
-    require((dirname(__FILE__)  . '/includes/' . $service));
+$_includes = scandir((dirname(__FILE__) . '/includes/'));
+foreach (array_splice($_includes, 3) as $include) {
+    require((dirname(__FILE__) . '/includes/' . $include));
 }
 
 $_services = scandir($_ENV['APP_DIR'] . '/services/');

@@ -1,70 +1,68 @@
-class signIn {
-    constructor() {
-        $('#newusername').blur(function () {
-            var username = $("#newusername").val();
+$('#username').blur(function () {
+    var username = $("#username").val();
 
-            if (username != '') {
-                post_data = {
-                    'username': username,
-                    'requestType': 'usercheck'
-                };
-                $.post('./api.php?signin', post_data, function (data) {
-                    if (data == '1') {
-                        // Duplicate Username found
-                        Notifi.addNotification({
-                            color: 'warning',
-                            text: dupUsername1 + ' "' + username + '". ' + dupUsername2,
-                            icon: '<i class="fa fa-warning"></i>',
-                            timeout: 12000
-                        });
-
-                        $("#newusername").val('');
-                    }
+    if (username != '') {
+        post_data = {
+            'username': username,
+            'requestType': 'usercheck'
+        };
+        $.post('./api.php?signin', post_data, function (data) {
+            if (data == '1') {
+                // Duplicate Username found
+                Notifi.addNotification({
+                    color: 'warning',
+                    text: "This username already exists, please try another username",
+                    icon: '<i class="fa fa-warning"></i>',
+                    timeout: 12000
                 });
+
+                $("#username").val('');
             }
         });
+    }
+});
 
-        $('#newemail').blur(function () {
-            var useremail = $("#newemail").val();
+$('#username').blur(function () {
+    var useremail = $("#username").val();
 
-            if (useremail != '') {
-                // Start the API
-                post_data = {
-                    'useremail': useremail,
-                    'requestType': 'emailcheck'
-                };
-                $.post('./api.php?signin', post_data, function (data) {
-                    if (data == '1') {
-                        // Duplicate Email found
+    if (useremail != '') {
+        // Start the API
+        post_data = {
+            'useremail': useremail,
+            'requestType': 'emailcheck'
+        };
+        $.post('./api.php?signin', post_data, function (data) {
+            if (data == '1') {
+                // Duplicate Email found
                         Notifi.addNotification({
                             color: 'warning',
-                            text: dupEmail,
+                            text: "This email address already exists, please try another email address",
                             icon: '<i class="fa fa-warning"></i>',
                             timeout: 12000
                         });
 
                         // Reset the form fields
-                        $("#newemail").val('');
+                $("#username").val('');
                     }
                 });
             }
         });
 
-        $('#signin-btn').click(function (e) {
-            e.preventDefault();
+$('#signin').click(function (e) {
+    e.preventDefault();
 
-            var username = $("#username").val();
-            var password = $("#password").val();
+    var username = $("#lusername").val();
+    var password = $("#lpassword").val();
 
-            if (username == '') {
-                Notifi.addNotification({
-                    color: 'danger',
-                    text: usernameReq,
-                    icon: '<i class="fa fa-warning"></i>',
-                    timeout: 10000
-                });
-                $("#username").focus();
-                return false;
+    if (username == '') {
+        Notifi.addNotification({
+            color: 'danger',
+            text: username,
+            icon: '<i class="fa fa-warning"></i>',
+            timeout: 10000
+        });
+        $("#lusername").focus();
+        return false;
             }
 
             if (password == '') {
@@ -74,7 +72,7 @@ class signIn {
                     icon: '<i class="fa fa-warning"></i>',
                     timeout: 10000
                 });
-                $("#password").focus();
+                $("#lpassword").focus();
                 return false;
             }
 
@@ -89,24 +87,24 @@ class signIn {
                     // Unknown error
                     Notifi.addNotification({
                         color: 'warning',
-                        text: invalidSignin,
+                        text: "There was an unexpected error, please try again",
                         icon: '<i class="fa fa-warning"></i>',
                         timeout: 12000
                     });
 
-                    $("#username, #password").val('');
+                    $("#lusername, #lpassword").val('');
                 } else {
                     $.each($.parseJSON(resdata), function (idx, obj) {
                         if (obj[0] != '') {
                             // All is good!
                             Notifi.addNotification({
                                 color: 'success',
-                                text: signinSuccess,
+                                text: "Yay, sucess!",
                                 icon: '<i class="fa fa-check"></i>',
                                 timeout: 10000
                             });
 
-                            $("#username, #password").val('');
+                            $("#lusername, #lpassword").val('');
 
                             window.setTimeout(function () {
                                 location.href = "api.php";
@@ -114,7 +112,7 @@ class signIn {
                         } else {
                             Notifi.addNotification({
                                 color: 'danger',
-                                text: signinError,
+                                text: "There was an error signing you in, please try again",
                                 icon: '<i class="fa fa-warning"></i>',
                                 timeout: 12000
                             });
@@ -124,30 +122,28 @@ class signIn {
             });
         });
 
-        $('#signup-btn').click(function (e) {
-            e.preventDefault();
+$('#signup').click(function (e) {
+    e.preventDefault();
 
-            var username = $("#newusername").val();
-            var useremail = $("#newemail").val();
-            var password = $("#newpass").val();
-            var newacc = $("#newacc").val();
+    var username = $("#username").val();
+    var useremail = $("#email").val();
+    var password = $("#newpass").val();
 
-            if (newacc == '') {
-                if (username == '') {
-                    Notifi.addNotification({
-                        color: 'danger',
-                        text: newusernameReq,
-                        icon: '<i class="fa fa-warning"></i>',
-                        timeout: 10000
-                    });
-                    $("#newusername").focus();
+    if (username == '') {
+        Notifi.addNotification({
+            color: 'danger',
+            text: "Username cannot be empty",
+            icon: '<i class="fa fa-warning"></i>',
+            timeout: 10000
+        });
+        $("#username").focus();
                     return false;
                 }
 
                 if (useremail == '') {
                     Notifi.addNotification({
                         color: 'danger',
-                        text: validEmailReq,
+                        text: "Email address cannot be empty",
                         icon: '<i class="fa fa-warning"></i>',
                         timeout: 10000
                     });
@@ -158,7 +154,7 @@ class signIn {
                 if (password == '') {
                     Notifi.addNotification({
                         color: 'danger',
-                        text: newpassReq,
+                        text: "Password cannot be empty",
                         icon: '<i class="fa fa-warning"></i>',
                         timeout: 10000
                     });
@@ -177,40 +173,36 @@ class signIn {
                         // All is good!
                         Notifi.addNotification({
                             color: 'success',
-                            text: newAccCreated,
+                            text: "Yay, success!",
                             icon: '<i class="fa fa-check"></i>',
                             timeout: 10000
                         });
 
-                        $("#newusername, #newemail, #newpass").val('');
+                        $("#username, #newemail, #newpass").val('');
                     } else {
                         // Unknown error
                         Notifi.addNotification({
                             color: 'danger',
-                            text: newAccError,
+                            text: "Unkown error, please try again",
                             icon: '<i class="fa fa-warning"></i>',
                             timeout: 12000
                         });
                     }
                 });
-            } else {
-                $("#newusername, #newemail, #newpass").val('');
-                return false;
-            }
         });
 
-        $('#resetPass').click(function (e) {
-            e.preventDefault();
+$('#reset').click(function (e) {
+    e.preventDefault();
 
-            var useremail = $("#accountEmail").val();
+    var useremail = $("#accountEmail").val();
 
-            if (useremail == '') {
-                Notifi.addNotification({
-                    color: 'danger',
-                    text: accountEmailReq,
-                    icon: '<i class="fa fa-warning"></i>',
-                    timeout: 10000
-                });
+    if (useremail == '') {
+        Notifi.addNotification({
+            color: 'danger',
+            text: "Email cannot be empty",
+            icon: '<i class="fa fa-warning"></i>',
+            timeout: 10000
+        });
                 $("#newemail").focus();
                 return false;
             }
@@ -224,7 +216,7 @@ class signIn {
                     // All is good!
                     Notifi.addNotification({
                         color: 'success',
-                        text: passResetSuccess,
+                        text: "Yay, success!",
                         icon: '<i class="fa fa-check"></i>',
                         timeout: 10000
                     });
@@ -233,7 +225,7 @@ class signIn {
                 } else if (data == '0') {
                     Notifi.addNotification({
                         color: 'danger',
-                        text: noAccError,
+                        text: "This account could not be found",
                         icon: '<i class="fa fa-warning"></i>',
                         timeout: 12000
                     });
@@ -242,7 +234,7 @@ class signIn {
                 } else {
                     Notifi.addNotification({
                         color: 'danger',
-                        text: resetPassError,
+                        text: "Unexpected error please try again",
                         icon: '<i class="fa fa-warning"></i>',
                         timeout: 12000
                     });
@@ -251,5 +243,3 @@ class signIn {
                 }
             });
         });
-    }
-}
