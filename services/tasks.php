@@ -28,10 +28,10 @@ class tasks
         define('TASK_STATUS', 11);
         define('UPDATE_DATE', 12);
 
-        $db->deleteWhere('tasks.txt', new AndWhereClause(new SimpleWhereClause(TASK_ID, '=', $taskid, STRING_COMPARISON)));
+        $db->deleteWhere('tasks.txt', new AndWhereClause(new SimpleWhereClause(TASK_ID, '=', $taskid, $_ENV['STRING_COMPARISON'])));
 
-        unlink('../data/tasks/' . $taskid . '.txt');
-        unlink('../data/tasks/' . $taskid . '.txt.lock');
+        unlink ($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt');
+        unlink ($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt.lock');
 
         $checkFile = $_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt';
 

@@ -5,20 +5,6 @@ namespace vandash\includes;
 
 use vandash\includes\txtDB_utils;
 
-$comparison_type_for_col_type = [
-    INT_COL => INTEGER_COMPARISON,
-    DATE_COL => INTEGER_COMPARISON,
-    STRING_COL => STRING_COMPARISON,
-    FLOAT_COL => NUMERIC_COMPARISON,
-];
-
-function get_comparison_type_for_col_type($coltype)
-{
-    global $comparison_type_for_col_type;
-
-    return $comparison_type_for_col_type[$coltype];
-}
-
 
 class txtDB
 {
@@ -125,7 +111,7 @@ class txtDB
             $tablename,
             null,
             1,
-            new OrderBy($idField, DESCENDING, INTEGER_COMPARISON)
+            new OrderBy($idField, DESCENDING, $_ENV['INTEGER_COMPARISON'])
         );
         $newId = ($rows) ? $rows[0][$idField] + 1 : 1;
         $newRow[$idField] = $newId;
@@ -275,7 +261,7 @@ class SimpleWhereClause extends WhereClause
     public $value;
     public $compare_type;
 
-    public function __construct($field, $operator, $value, $compare_type = DEFAULT_COMPARISON)
+    public function __construct($field, $operator, $value, $compare_type)
     {
         $this->field = $field;
         $this->operator = $operator;
@@ -291,9 +277,6 @@ class SimpleWhereClause extends WhereClause
 
         $cmpfunc = $this->compare_type;
 
-        if ($cmpfunc == DEFAULT_COMPARISON) {
-            $cmpfunc = ($rowSchema !== null) ? get_comparison_type_for_col_type($rowSchema[$this->field]) : STRING_COMPARISON;
-        }
 
         $dbval = ($this->field >= count($tablerow)) ? '' : $tablerow[$this->field];
 
@@ -324,7 +307,7 @@ class ListWhereClause extends WhereClause
     public $list;
     public $compareAs;
 
-    public function __construct($field, $list, $compare_type = DEFAULT_COMPARISON)
+    public function __construct($field, $list, $compare_type)
     {
         $this->list = $list;
         $this->field = (int)$field;
@@ -334,9 +317,6 @@ class ListWhereClause extends WhereClause
     public function testRow($tablerow, $rowSchema = null)
     {
         $func = $this->compareAs;
-        if ($func == DEFAULT_COMPARISON) {
-            if ($rowSchema) $func = get_comparison_type_for_col_type($rowSchema[$this->field]); else  $func = STRING_COMPARISON;
-        }
 
         foreach ($this->list as $item) {
             if ($func($tablerow[$this->field], $item) == 0) return true;
@@ -401,7 +381,7 @@ class OrderBy
     public $orderType;
     public $compareAs;
 
-    public function __construct($field, $orderType, $compareAs = DEFAULT_COMPARISON)
+    public function __construct($field, $orderType, $compareAs)
     {
         $this->field = $field;
         $this->orderType = $orderType;
@@ -421,9 +401,6 @@ class Orderer
         if ($rowSchema) {
             foreach ($orderBy as $index => $discard) {
                 $item = &$orderBy[$index];
-                if ($item->compareAs == DEFAULT_COMPARISON) {
-                    $item->compareAs = get_comparison_type_for_col_type($rowSchema[$item->field]);
-                }
             }
         }
         $this->orderByList = $orderBy;
@@ -439,8 +416,8 @@ class Orderer
         $orderBy = $this->orderByList[$index];
         $cmpfunc = $orderBy->compareAs;
 
-        if ($cmpfunc == DEFAULT_COMPARISON) {
-            $cmpfunc = STRING_COMPARISON;
+        if ($cmpfunc == $_ENV['DEFAULT_COMPARISON']) {
+            $cmpfunc = $_ENV['STRING_COMPARISON'];
         }
 
         $cmp = $orderBy->orderType * $cmpfunc($row1[$orderBy->field], $row2[$orderBy->field]);

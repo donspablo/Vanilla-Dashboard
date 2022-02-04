@@ -14,10 +14,10 @@ class notes
 
         $noteid = htmlspecialchars($_POST['noteid']);
 
-        $db->deleteWhere('notes.txt', new AndWhereClause(new SimpleWhereClause(NOTE_ID, '=', $noteid, STRING_COMPARISON)));
+        $db->deleteWhere('notes.txt', new AndWhereClause(new SimpleWhereClause(NOTE_ID, '=', $noteid, $_ENV['STRING_COMPARISON'])));
 
-        unlink('../data/notes/' . $noteid . '.txt');
-        unlink('../data/notes/' . $noteid . '.txt.lock');
+        unlink ($_ENV['APP_DIR'] . '/data/notes/' . $noteid . '.txt');
+        unlink ($_ENV['APP_DIR'] . '/data/notes/' . $noteid . '.txt.lock');
 
         $checkFile = $_ENV['APP_DIR'] . '/data/notes/' . $noteid . '.txt';
 

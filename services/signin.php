@@ -40,8 +40,8 @@ class signin
         $pass = encodeIt($password);
 
         $compClause = new AndWhereClause();
-        $compClause->add(new SimpleWhereClause(USERNAME, '=', $usrname, STRING_COMPARISON));
-        $compClause->add(new SimpleWhereClause(PASSWORD, '=', $pass, STRING_COMPARISON));
+        $compClause->add(new SimpleWhereClause(USERNAME, '=', $usrname, $_ENV['STRING_COMPARISON']));
+        $compClause->add(new SimpleWhereClause(PASSWORD, '=', $pass, $_ENV['STRING_COMPARISON']));
         $userdata = $db->selectWhere('users.txt', $compClause, 1);
 
         foreach ($userdata as $item => $row) {

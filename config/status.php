@@ -1,6 +1,6 @@
 <?php
 
-namespace vandash\includes;
+namespace vandash\config;
 
 // Tasks
 $_ENV['USER_ID'] = 0;

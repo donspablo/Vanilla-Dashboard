@@ -1,11 +1,11 @@
 <?php
 
-namespace vandash\includes;
+namespace vandash\config;
 
 use InvalidArgumentException;
 use RuntimeException;
 
-class Dotenv
+class dotenv
 {
     protected $path;
 
@@ -18,7 +18,7 @@ class Dotenv
         $this->path = $path;
     }
 
-    public function load(): void
+    public function load()
     {
         if (!is_readable($this->path)) {
             throw new RuntimeException(sprintf('%s file is not readable', $this->path));

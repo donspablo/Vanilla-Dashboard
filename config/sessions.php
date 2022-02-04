@@ -1,7 +1,7 @@
 <?php
 
 
-namespace vandash\includes;
+namespace vandash\config;
 
 ini_set('session.cookie_httponly', true);            // Helps mitigate xss
 ini_set('session.session.use_only_cookies', true);    // Prevents session fixation

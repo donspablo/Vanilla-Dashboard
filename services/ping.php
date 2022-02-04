@@ -1,6 +1,7 @@
 <?php
 
 namespace vandash\services;
+use vandash\includes\txtDB;
 
 class ping
 {
@@ -9,7 +10,7 @@ class ping
 
     public function __construct()
     {
-        $this->db = new vandash\includes\txtDB();
+        $this->db = new txtDB();
         $this->db->datadir = $_ENV['APP_DIR'] . '/data/';
 
         $token = (isset($_GET['token']) && preg_match('/^[0-9a-f]{8}$/', $_GET['token'])) ? $_GET['token'] : false;
@@ -53,15 +54,19 @@ class ping
     function fetch($key)
     {
 
-        return json_encode($this->db->selectWhere('ping.txt', $key));
-
+        $pingdata = json_encode($this->db->selectWhere('ping.txt', $key));
+        $checkFile = $_ENV['APP_DIR'] . '/data/notes/ping.txt';
+        if (empty($pingdata)) echo '0'; else echo '1';
+        exit;
     }
 
     function store($key, $current, $ttl)
     {
 
-        return $this->db->insert('ping.txt', ["key" => $key, "current" => $current, "ttl" => $ttl]);
-
+        $this->db->insert('ping.txt', ["key" => $key, "current" => $current, "ttl" => $ttl]);
+        $checkFile = $_ENV['APP_DIR'] . '/data/notes/ping.txt';
+        if (file_exists($checkFile)) echo '0'; else  echo '1';
+        exit;
     }
 }
 
