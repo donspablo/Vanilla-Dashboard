@@ -5,12 +5,12 @@
 
 namespace vandash;
 
-$_configs = scandir((dirname(__FILE__) . '/config/'));
+$_configs = scandir((dirname(__FILE__) . '/configs/'));
 foreach (array_splice($_configs, 3) as $config) {
-    require((dirname(__FILE__) . '/config/' . $config));
+    require((dirname(__FILE__) . '/configs/' . $config));
 }
 
-use vandash\config\dotenv;
+use vandash\configs\dotenv;
 
 (new dotenv(__DIR__ . '/.env'))->load();
 $_ENV['SITE_URL'] = ($_ENV['SITE_URL'] == 'default') ? "https://" . @$_SERVER['HTTP_HOST'] : $_ENV['SITE_URL'];
