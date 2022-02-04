@@ -278,6 +278,10 @@ dist
 # Serverless Webpack directories
 .webpack/
 
+tmp/
+flow/
+.idea/
+
 # Optional stylelint cache
 
 # SvelteKit build / generate output
@@ -380,3 +384,4 @@ dist
 /data/
 /.idea/
 /.idea/
+/tmp/

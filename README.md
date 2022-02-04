@@ -144,7 +144,7 @@ node index.js
 
 ```
 
-- URL address `http://127.0.0.1:8000/$dashboard/` (default, can be changed in config)
+- URL address `http://127.0.0.1:8000/` (default, can be changed in config)
 - __first start__ you have to install components via Component manager in `Dashboard`
 
 
