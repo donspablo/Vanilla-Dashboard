@@ -1,18 +1,15 @@
 {
-  "name": "Vanilla Dashboard",
-  "description": "🍦 The Vanilla Dashboard is a Vanilla JavaScript dashboard that connects to a.txt file-based database through PHP. Vanilla Dashboard is free and open source software.",
-  "version": "1.0.0",
-  "main": "index.js",
-  "dependencies": {
-    "open": "^8.4.0",
-    "total4": "latest"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "platform"
-  ],
-  "author": "don Pablo",
-  "license": "MIT"
+	"name": "totalproject",
+	"description": "Empty project",
+	"version": "1.0.0",
+	"main": "index.js",
+	"dependencies": {
+		"total4": "latest"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": ["empty", "project"],
+	"author": "Peter Širka",
+	"license": "MIT"
 }

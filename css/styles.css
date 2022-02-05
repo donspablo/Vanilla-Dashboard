@@ -29,12 +29,20 @@ html.login, html.login body {
     height: initial;
 }
 
-#intro {
+#intro, .skype-button {
     opacity: 0;
     pointer-events: none;
 }
 
-html.login #intro {
+.bubble .lwc-chat-button {
+    right: 20px !important;
+    bottom: 20px !important;
+  }
+  .bubble .lwc-chat-button * {
+    box-sizing: content-box;
+  }
+
+html.login #intro, html.login .skype-button{
     display: block;
     opacity: 1;
     pointer-events: initial;

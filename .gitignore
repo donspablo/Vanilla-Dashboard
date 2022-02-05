@@ -1,6 +1,6 @@
 *
 .src/
-
+!bundles/*
 !.gitignore
 !.lando.yml
 !api.php
