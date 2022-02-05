@@ -55,7 +55,7 @@ class ping
     {
 
         $pingdata = json_encode($this->db->selectWhere('ping.txt', $key));
-        $checkFile = $_ENV['APP_DIR'] . '/data/notes/ping.txt';
+        $checkFile = $_ENV['APP_DIR'] . '/data/ping/ping.txt';
         if (empty($pingdata)) echo '0'; else echo '1';
         exit;
     }
@@ -64,7 +64,7 @@ class ping
     {
 
         $this->db->insert('ping.txt', ["key" => $key, "current" => $current, "ttl" => $ttl]);
-        $checkFile = $_ENV['APP_DIR'] . '/data/notes/ping.txt';
+        $checkFile = $_ENV['APP_DIR'] . '/data/ping/ping.txt';
         if (file_exists($checkFile)) echo '0'; else  echo '1';
         exit;
     }
