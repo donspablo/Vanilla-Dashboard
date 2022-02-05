@@ -53,72 +53,76 @@ class signin
             $_SESSION['st']['userEmail'] = $row[3];
         }
 
-        return json_encode($userdata);
+        echo json_encode($userdata);
     }
 
     function signup($db, $username, $useremail, $password)
     {
-        define('USER_ID', 0);
-        define('USERNAME', 1);
-        define('PASSWORD', 2);
-        define('USER_EMAIL', 3);
-        define('DATE_CREATED', 4);
-
+        // Get $_POST data
         $usrname = htmlspecialchars(functions::alphaNum($username));
         $usremail = htmlspecialchars($useremail);
         $pass = functions::encodeIt($password);
         $dateCreated = date('Y-m-d H:i:s');
 
+        // Generate a RANDOM Hash
         $randomHash = uniqid(rand());
+        // Take the first 8 hash digits and use it as the User's ID
         $randHash = substr($randomHash, 0, 8);
 
-        $newuser[USER_ID] = $randHash;
-        $newuser[USERNAME] = $usrname;
-        $newuser[PASSWORD] = $pass;
-        $newuser[USER_EMAIL] = $usremail;
-        $newuser[DATE_CREATED] = $dateCreated;
+        // Set the values to insert
+        $newuser[$_ENV['USER_ID']] = $randHash;
+        $newuser[$_ENV['USERNAME']] = $usrname;
+        $newuser[$_ENV['PASSWORD']] = $pass;
+        $newuser[$_ENV['USER_EMAIL']] = $usremail;
+        $newuser[$_ENV['DATE_CREATED']] = $dateCreated;
 
         $new_user = $db->insert(
             'users.txt',
             $newuser
         );
 
-        $userinfo[USER_ID] = $randHash;
-        $userinfo[USERNAME] = $usrname;
-        $userinfo[DATE_CREATED] = $dateCreated;
+        $userinfo[$_ENV['USER_ID']] = $randHash;
+        $userinfo[$_ENV['USERNAME']] = $usrname;
+        $userinfo[$_ENV['DATE_CREATED']] = $dateCreated;
 
-        $userFile = $usrname . '-' . $randHash;
+        // Define the File to be created
+        $userFile = $usrname.'-'.$randHash;
 
+        // Insert the data
         $new_user = $db->insert(
-            $userFile . '.txt',
+            $userFile.'.txt',
             $userinfo
         );
 
-        $subject = $_ENV['SITE_NAME'] . ' New Account Created';
+        // Send out Notification Email to the New User
+        $subject = $siteName.' New Account Created';
 
         $message = '<html><body>';
-        $message .= '<h3>' . $subject . '</h3>';
+        $message .= '<h3>'.$subject.'</h3>';
         $message .= '<p>';
         $message .= 'Your new account has been successfully created, and you can now sign in.<br />';
-        $message .= '<a href="' . $_ENV['SITE_URL'] . 'sign-in">Sign In</a>';
+        $message .= '<a href="'.$siteUrl.'sign-in.php">Sign In</a>';
         $message .= '</p>';
-        $message .= '<p>Username: ' . $usrname . '<br />Password: The password you signed up with.</p>';
+        $message .= '<p>Username: '.$usrname.'<br />Password: The password you signed up with.</p>';
         $message .= '<hr />';
-        $message .= '<p>Thank You,<br>' . $_ENV['SITE_NAME'] . '</p>';
+        $message .= '<p>Thank You,<br>'.$siteName.'</p>';
         $message .= '</body></html>';
 
-        $headers = 'From: ' . $_ENV['SITE_NAME'] . ' <' . $_ENV['SITE_EMAIL'] . ">\r\n";
-        $headers .= 'Reply-To: ' . $_ENV['SITE_EMAIL'] . "\r\n";
+        $headers = 'From: '.$siteName.' <'.$siteEmail.">\r\n";
+        $headers .= 'Reply-To: '.$siteEmail."\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
         mail($usremail, $subject, $message, $headers);
 
         // Check if the file was created
-        $checkFile = $_ENV['APP_DIR'] . '/data/' . $userFile . '.txt';
+        $checkFile = '../data/'.$userFile.'.txt';
 
-
-        return  (file_exists($checkFile)) ?  '1': '0';
+        if (file_exists($checkFile)) {
+            echo '1';    // All is good!
+        } else {
+            echo '0';    // Nope, error...
+        }
     }
 
     function resetpass($db, $useremail)
