@@ -13,6 +13,9 @@ class orderer
         if ($rowSchema) {
             foreach ($orderBy as $index => $discard) {
                 $item = &$orderBy[$index];
+                if ($item->compareAs == $_ENV['DEFAULT_COMPARISON']) {
+                    $item->compareAs = get_comparison_type_for_col_type($rowSchema[$item->field]);
+                }
             }
         }
         $this->orderByList = $orderBy;

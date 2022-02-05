@@ -23,7 +23,13 @@ class simplewhereclause extends aaawhereclause
         }
 
         $cmpfunc = $this->compare_type;
-
+        if ($cmpfunc == $_ENV['DEFAULT_COMPARISON']) {
+            if ($rowSchema !== null) {
+                $cmpfunc = get_comparison_type_for_col_type($rowSchema[$this->field]);
+            } else {
+                $cmpfunc = $_ENV['STRING_COMPARISON'];
+            }
+        }
 
         $dbval = ($this->field >= count($tablerow)) ? '' : $tablerow[$this->field];
 

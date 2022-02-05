@@ -5,6 +5,21 @@ namespace vandash\includes;
 
 use vandash\includes\txtDB_utils;
 
+
+$comparison_type_for_col_type = [
+    'INT_COL'    => $_ENV['INTEGER_COMPARISON'],
+    'DATE_COL'   => $_ENV['INTEGER_COMPARISON'],
+    'STRING_COL' => $_ENV['STRING_COMPARISON'],
+    'FLOAT_COL'  => $_ENV['NUMERIC_COMPARISON'],
+];
+
+function get_comparison_type_for_col_type($coltype)
+{
+    global $comparison_type_for_col_type;
+
+    return $comparison_type_for_col_type[$coltype];
+}
+
 class txtDB
 {
     public $tables;

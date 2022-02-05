@@ -19,28 +19,27 @@ class signin
         switch ($mode) {
             case
             'signin':
-                signin($db, $_POST['username'], $_POST['password']);
+                $this->sign($db, $_POST['username'], $_POST['password']);
                 break;
             case 'signup':
-                signup($db, $_POST['username'], $_POST['useremail'], $_POST['password']);
+                $this->signup($db, $_POST['username'], $_POST['useremail'], $_POST['password']);
                 break;
             case 'resetpass':
-                resetpass($db, $_POST['username']);
+                $this->resetpass($db, $_POST['username']);
                 break;
             case 'usercheck':
-                usercheck($db, $_POST['username']);
+                $this->usercheck($db, $_POST['username']);
                 break;
             case 'emailcheck':
-                emailcheck($db, $_POST['useremail']);
+                $this->emailcheck($db, $_POST['useremail']);
                 break;
 
         }
+    }
 
 
-        function signin($db, $username, $password)
+        function sign($db, $username, $password)
         {
-
-            $userdata = '';
             $usrname = htmlspecialchars($username);
             $pass = functions::encodeIt($password);
 
@@ -78,8 +77,6 @@ class signin
             $newuser[$_ENV['PASSWORD']] = $pass;
             $newuser[$_ENV['USER_EMAIL']] = $usremail;
             $newuser[$_ENV['DATE_CREATED']] = $dateCreated;
-
-            print_r($newuser);
 
             $new_user = $db->insert(
                 'users.txt',
@@ -225,6 +222,4 @@ class signin
             return empty($userdata) ? '0' : '1';
         }
     }
-}
-
 if(isset($_GET['signin'])) new signin();
