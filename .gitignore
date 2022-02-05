@@ -1,6 +1,6 @@
 *
 .src/
-!bundles/*
+!bundles/
 !.gitignore
 !.lando.yml
 !api.php
@@ -11,8 +11,10 @@
 !package.json
 !README.md
 !serviceworker.js
-.idea/*
-configs/*
+.idea/
+configs/
+packages/*
+config
 !configs/.htaccess
 !configs/.dotenv.php
 !configs/.sessions.php
@@ -38,4 +40,4 @@ includes/*
 !includes/txtDB_utils.php
 !js/*
 !services/*
-
+!sample.env
