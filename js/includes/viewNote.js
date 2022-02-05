@@ -48,7 +48,7 @@ class viewNote {
                 return false;
             }
 
-            post_data = {
+            var post_data = {
                 'noteTitle': noteTitle,
                 'notesText': notesText,
                 'noteId': nid,

@@ -35,7 +35,7 @@ class notes {
                 var noteid = $(this).closest("p").find("input").val();
 
                 // Start the API
-                post_data = {
+                var post_data = {
                     'noteid': noteid
                 };
                 $.post('./api.php?notes', post_data, function (data) {

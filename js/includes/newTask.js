@@ -60,7 +60,7 @@ class newTask {
             }
 
             // Start the API
-            post_data = {
+            var post_data = {
                 'taskTitle': taskTitle,
                 'dateAssigned': dateAssigned,
                 'dateDue': dateDue,

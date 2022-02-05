@@ -4,7 +4,7 @@ class newNote {
             e.preventDefault();
 
             // Start the API
-            post_data = {
+            var post_data = {
                 'noteTitle': noteTitle,
                 'notesText': notesText
             };

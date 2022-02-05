@@ -19,14 +19,13 @@ var resetPassError = 'Looks like an unexpected error was encountered, and your A
 
 class signIn {
 
-    constructior() {
+    constructor() {
 
         $('#newusername').blur(function () {
             var username = $("#newusername").val();
 
             if (username != '') {
-                // Start the AJAX
-                post_data = {
+                var post_data = {
                     'username': username,
                     'requestType': 'usercheck'
                 };
@@ -47,7 +46,6 @@ class signIn {
             }
         });
 
-// Show Username restictions on first focus
         $('#newusername').focus(function () {
             if (focused === 0) {
                 Notifi.addNotification({
@@ -60,7 +58,6 @@ class signIn {
             }
         });
 
-// Check for Duplicate Email
         $('#newemail').blur(function () {
             var useremail = $("#newemail").val();
 
@@ -87,7 +84,6 @@ class signIn {
             }
         });
 
-// Sign the user in
         $('#signin-btn').click(function (e) {
             e.preventDefault();
 
@@ -167,7 +163,6 @@ class signIn {
             });
         });
 
-// Create a new account
         $('#signup-btn').click(function (e) {
             e.preventDefault();
 
@@ -247,7 +242,6 @@ class signIn {
             }
         });
 
-// Reset account password
         $('#resetPass').click(function (e) {
             e.preventDefault();
 

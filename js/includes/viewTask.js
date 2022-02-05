@@ -155,7 +155,7 @@ class viewTask {
         var tid = $("#tid").val();
         var msgDiv = $("#msgDiv");
 
-        post_data = {
+        var post_data = {
             'requestType': 'checkStatus',
             'taskId': tid
         };

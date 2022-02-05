@@ -37,7 +37,7 @@ class profile {
         }
 
         // Start the AJAX
-        post_data = {
+        var post_data = {
             'userEmail': userEmail,
             'password1': password1,
             'password2': password2,
