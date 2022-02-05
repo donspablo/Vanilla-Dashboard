@@ -182,7 +182,7 @@ html.login #intro {
     border-radius: 15px 15px;
     border: 8px rgba(0, 174, 255, 0.7) solid;
     box-shadow: 0 0 1000px 0 rgba(0, 217, 255, 0.4);
-    background-image: url("https://media4.giphy.com/media/13DZCJrmTryVKU/giphy.gif?cid=790b761164ef6e04ddcd1e70e7bdbe87ff07588a371bce34&rid=giphy.gif&ct=g");
+    background-image: url("../img/login.webp");
 }
 
 .card-back {

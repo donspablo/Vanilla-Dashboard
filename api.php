@@ -22,6 +22,15 @@ define('PEPPER', $_ENV['PEPPER']);
 define('KEY', $_ENV['KEY']);
 
 
+
+
+ini_set('SMTP', $_ENV['SMTP']);
+ini_set('smtp_port', $_ENV['smtp_port']);
+ini_set('username', $_ENV['username']);
+ini_set('password', $_ENV['password']);
+ini_set('sendmail_from', $_ENV['sendmail_from']);
+
+
 $_includes = scandir((dirname(__FILE__) . '/includes/'));
 foreach (array_splice($_includes, 3) as $include) {
     require((dirname(__FILE__) . '/includes/' . $include));

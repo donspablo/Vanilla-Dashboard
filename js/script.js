@@ -407,9 +407,6 @@ $("form :input[required='required']").change(function () {
     }
 });
 
-/** ******************************
- * Textarea Resize
- ****************************** **/
 if ($(".autosize").length > 0) {
     $(".autosize").each(function () {
         resizeTextArea($(this));
@@ -419,13 +416,13 @@ if ($(".autosize").length > 0) {
 var signoutNotification = null;
 $('#signout').click(function (e) {
     e.preventDefault();
-    if (Meowsa.isDismissed(signoutNotification)) {
-        signoutNotification = Meowsa.addNotification({
+    if (Notifi.isDismissed(signoutNotification)) {
+        signoutNotification = Notifi.addNotification({
             color: 'default',
             title: accountSignOutTitle,
             text: accountSignOutText,
             icon: '<i class="fa fa-sign-out fa-lg"></i>',
-            button: '<a href="index.php?action=signout" class="btn btn-success btn-meowsa">' + yesOption + '</a> <span id="cancel-signout" class="btn btn-warning btn-meowsa btn-close-notification">' + cancelOption + '</span>',
+            button: '<a href="index.php?action=signout" class="btn btn-success btn-notifi">' + yesOption + '</a> <span id="cancel-signout" class="btn btn-warning btn-notifi btn-close-notification">' + cancelOption + '</span>',
             timeout: null
         });
     }

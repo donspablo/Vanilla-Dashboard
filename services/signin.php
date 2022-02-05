@@ -201,7 +201,7 @@ class signin
         define('USER_EMAIL', 3);
         define('DATE_CREATED', 4);
 
-        $usrname = htmlspecialchars(functions->alphaNum($username));
+        $usrname = htmlspecialchars(functions::alphaNum($username));
 
         $userdata = $db->selectWhere(
             'users.txt',

@@ -1,3 +1,8 @@
+var noteTitleReq = "The Note's Title can not be empty.";
+var noteReq = 'The Note can not be empty.';
+var noteSavedText = 'Cheer! The Note has been updated.';
+var noteError = 'Whoops, looks like an unexpected error was encountered, and the Note could not be updated at this time.';
+
 class viewNote {
     constructor() {
         $('#pageBottom').on('click', function (e) {
@@ -82,3 +87,5 @@ class viewNote {
         });
     }
 }
+
+//new viewNote();

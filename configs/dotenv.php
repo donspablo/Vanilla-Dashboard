@@ -1,6 +1,6 @@
 <?php
 
-namespace vandash\config;
+namespace vandash\configs;
 
 use InvalidArgumentException;
 use RuntimeException;
@@ -30,7 +30,7 @@ class dotenv
             if (strpos(trim($line), '#') === 0) {
                 continue;
             }
-
+            
             list($name, $value) = explode('=', $line, 2);
             $name = trim($name);
             $value = trim($value);

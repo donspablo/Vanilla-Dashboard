@@ -1,6 +1,16 @@
+var taskTitleReq = "The Task's Title can not be empty.";
+var assignedDateReq = "The Task's Assigned Date can not be empty.";
+var dueDateReq = "The Task's Due Date can not be empty.";
+var taskDescReq = "The Task's Description can not be empty.";
+var taskUpdatedMsg = 'Cheer! The Task has been updated.';
+var updateError = 'Whoops, looks like an unexpected error was encountered, and the Task could not be updated at this time.';
+var taskCompOnText = 'Completed Task on';
+
 class viewTask {
     constructor() {
-        //this.loadStatus() if bla bla
+
+        loadStatus();
+
         $('#taskSave, #saveTask').click(function (e) {
             e.preventDefault();
 
@@ -57,6 +67,7 @@ class viewTask {
                 return false;
             }
 
+            // Start the AJAX
             post_data = {
                 'requestType': 'updateData',
                 'taskTitle': taskTitle,
@@ -71,8 +82,9 @@ class viewTask {
                 'taskId': tid,
                 'updatDate': updatDate
             };
-            $.post('./api.php?viewtask', post_data, function (data) {
+            $.post('./api.php?viewtask_ajax', post_data, function (data) {
                 if (data == '1') {
+                    // All is good!
                     Notifi.addNotification({
                         color: 'success',
                         text: taskUpdatedMsg,
@@ -82,6 +94,7 @@ class viewTask {
 
                     loadStatus();
 
+                    // Resize the Text Boxes to fit the updated content
                     $(".autosize").each(function () {
                         resizeTextArea($(this));
                     });
@@ -90,6 +103,7 @@ class viewTask {
                         scrollTop: 0
                     }, 100);
                 } else {
+                    // Unknown error
                     Notifi.addNotification({
                         color: 'danger',
                         text: updateError,
@@ -106,6 +120,35 @@ class viewTask {
             });
 
         });
+
+        var formatDate = function (date, format) {
+            date = convertDate(date);
+
+            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                getPaddedComp = function (comp) {
+                    return ((parseInt(comp) < 10) ? ('0' + comp) : comp)
+                },
+                formattedDate = format,
+                o = {
+                    "y+": date.getFullYear(),
+                    "M+": months[date.getMonth()],
+                    "d+": getPaddedComp(date.getDate())
+                };
+
+            for (var k in o) {
+                if (new RegExp("(" + k + ")").test(format)) {
+                    formattedDate = formattedDate.replace(RegExp.$1, o[k]);
+                }
+            }
+            return formattedDate;
+        };
+
+        var convertDate = function (date) {
+            var theDate = new Date(date);
+            var addDate = 1;
+            theDate.setDate(theDate.getDate() + addDate);
+            return theDate;
+        };
     }
 
     loadStatus() {
@@ -116,7 +159,7 @@ class viewTask {
             'requestType': 'checkStatus',
             'taskId': tid
         };
-        $.post('./api.php?viewtask', post_data, function (resdata) {
+        $.post('./api.php?viewtask_ajax', post_data, function (resdata) {
             $.each($.parseJSON(resdata), function (idx, obj) {
                 var compDate = formatDate(new Date(obj[8]), "M d, y");
 
@@ -129,4 +172,7 @@ class viewTask {
             });
         });
     }
+
 }
+
+//new viewTask();

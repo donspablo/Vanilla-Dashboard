@@ -134,9 +134,12 @@ in order to avoid misconceptions.
 
 ![image](https://user-images.githubusercontent.com/6468571/152181962-33e4e658-5fbc-4b2d-9366-7147e9fabe65.png)
 
-![image](https://user-images.githubusercontent.com/6468571/152181124-d8d43105-8525-4220-ab91-a4caf933634b.png)
+![img/img_1.png](img/img_1.png)
 
-## Power Up
+## Time to Power Up
+
+Its time to turn up the power with this versatile addon on, is it a Dashboard? Is it a CMS? Is it and Workflow builder,
+its Total JS v4.
 
 ```
 
@@ -146,7 +149,6 @@ node index.js
 
 - URL address `http://127.0.0.1:8000/` (default, can be changed in config)
 - __first start__ you have to install components via Component manager in `Dashboard`
-
 
 ```javascript
 var options = {};
@@ -479,6 +481,8 @@ __References:__
 ## Components
 
 - https://github.com/totaljs/dashboardcomponents
+
+![image](https://user-images.githubusercontent.com/6468571/152181124-d8d43105-8525-4220-ab91-a4caf933634b.png)
 
 ## Licensing and Ownership
 
