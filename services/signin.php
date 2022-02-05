@@ -53,7 +53,7 @@ class signin
             $_SESSION['st']['userEmail'] = $row[3];
         }
 
-        echo json_encode($userdata);
+        return json_encode($userdata);
     }
 
     function signup($db, $username, $useremail, $password)
@@ -117,11 +117,8 @@ class signin
         // Check if the file was created
         $checkFile = $_ENV['APP_DIR'] . '/data/' . $userFile . '.txt';
 
-        if (file_exists($checkFile)) {
-            echo '1';    // All is good!
-        } else {
-            echo '0';    // Nope, error...
-        }
+
+        return  (file_exists($checkFile)) ?  '1': '0';
     }
 
     function resetpass($db, $useremail)
@@ -142,7 +139,7 @@ class signin
         );
 
         if (empty($userdata)) {
-            echo '0';
+            echo '0';exit;
         } else {
             global $uid;
             global $uname;
@@ -187,7 +184,7 @@ class signin
 
             mail($useremail, $subject, $message, $headers);
 
-            echo '1';
+            return '1';
         }
     }
 
@@ -208,11 +205,7 @@ class signin
             new SimpleWhereClause(USERNAME, '=', $usrname)
         );
 
-        if (empty($userdata)) {
-            echo '0';
-        } else {
-            echo '1';
-        }
+       return (empty($userdata))? '0': '1';
     }
 
     function emailcheck($db, $useremail)
@@ -232,7 +225,7 @@ class signin
             new SimpleWhereClause(USER_EMAIL, '=', $useremail)
         );
 
-        if (empty($userdata)) echo '0'; else echo '1';
+       return empty($userdata) ?  '0'  :'1';
     }
 }
 

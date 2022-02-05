@@ -68,7 +68,7 @@ class viewTask {
             }
 
             // Start the AJAX
-            post_data = {
+            var post_data = {
                 'requestType': 'updateData',
                 'taskTitle': taskTitle,
                 'dateAssigned': dateAssigned,
@@ -82,7 +82,7 @@ class viewTask {
                 'taskId': tid,
                 'updatDate': updatDate
             };
-            $.post('./api.php?viewtask_ajax', post_data, function (data) {
+            $.post('./api.php?viewtask', post_data, function (data) {
                 if (data == '1') {
                     // All is good!
                     Notifi.addNotification({
@@ -159,7 +159,7 @@ class viewTask {
             'requestType': 'checkStatus',
             'taskId': tid
         };
-        $.post('./api.php?viewtask_ajax', post_data, function (resdata) {
+        $.post('./api.php?viewtask', post_data, function (resdata) {
             $.each($.parseJSON(resdata), function (idx, obj) {
                 var compDate = formatDate(new Date(obj[8]), "M d, y");
 

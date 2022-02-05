@@ -29,7 +29,7 @@ class signIn {
                     'username': username,
                     'requestType': 'usercheck'
                 };
-                $.post('./api.php?signin_ajax', post_data, function (data) {
+                $.post('./api.php?signin', post_data, function (data) {
                     if (data == '1') {
                         // Duplicate Username found
                         Notifi.addNotification({
@@ -63,11 +63,11 @@ class signIn {
 
             if (useremail != '') {
                 // Start the AJAX
-                post_data = {
+                var post_data = {
                     'useremail': useremail,
                     'requestType': 'emailcheck'
                 };
-                $.post('./api.php?signin_ajax', post_data, function (data) {
+                $.post('./api.php?signin', post_data, function (data) {
                     if (data == '1') {
                         // Duplicate Email found
                         Notifi.addNotification({
@@ -113,12 +113,12 @@ class signIn {
             }
 
             // Start the AJAX
-            post_data = {
+            var  post_data = {
                 'username': username,
                 'password': password,
                 'requestType': 'signin'
             };
-            $.post('./api.php?signin_ajax', post_data, function (resdata) {
+            $.post('./api.php?signin', post_data, function (resdata) {
                 var datacheck = $.parseJSON(resdata).length;
                 if (datacheck === 0) {
                     // Unknown error
@@ -140,15 +140,13 @@ class signIn {
                                 text: signinSuccess,
                                 icon: '<i class="fa fa-check"></i>',
                                 timeout: 10000
-                            });
+                            }); fields
 
-                            // Reset the form fields
+                            // Reset the form
                             $("#username, #password").val('');
 
                             // Redirect after 1.5 Seconds
-                            window.setTimeout(function () {
-                                location.href = "api.php";
-                            }, 1500);
+                            window.setTimeout($('html').addClass('login'),5000);
                         } else {
                             // Unknown error
                             Notifi.addNotification({
@@ -169,11 +167,6 @@ class signIn {
             var username = $("#newusername").val();
             var useremail = $("#newemail").val();
             var password = $("#newpass").val();
-            var newacc = $("#newacc").val();
-
-            newacc = "ture";
-
-            if (newacc == '') {
                 if (username == '') {
                     Notifi.addNotification({
                         color: 'danger',
@@ -208,13 +201,13 @@ class signIn {
                 }
 
                 // Start the AJAX
-                post_data = {
+                var post_data = {
                     'username': username,
                     'useremail': useremail,
                     'password': password,
                     'requestType': 'signup'
                 };
-                $.post('./api.php?signin_ajax', post_data, function (data) {
+                $.post('./api.php?signin', post_data, function (data) {
                     if (data == '1') {
                         // All is good!
                         Notifi.addNotification({
@@ -236,10 +229,6 @@ class signIn {
                         });
                     }
                 });
-            } else {
-                $("#newusername, #newemail, #newpass").val('');
-                return false;
-            }
         });
 
         $('#resetPass').click(function (e) {
@@ -259,11 +248,11 @@ class signIn {
             }
 
             // Start the AJAX
-            post_data = {
+            var   post_data = {
                 'useremail': useremail,
                 'requestType': 'resetpass'
             };
-            $.post('./api.php?signin_ajax', post_data, function (data) {
+            $.post('./api.php?signin', post_data, function (data) {
                 if (data == '1') {
                     // All is good!
                     Notifi.addNotification({

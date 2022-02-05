@@ -44,7 +44,7 @@ class profile {
             'old': old,
             'now': now
         };
-        $.post('./api.php?profile_ajax', post_data, function (data) {
+        $.post('./api.php?profile', post_data, function (data) {
             if (data == '1') {
                 // All is good!
                 Notifi.addNotification({

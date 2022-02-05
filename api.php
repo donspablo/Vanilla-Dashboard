@@ -4,7 +4,7 @@
 
 
 namespace vandash;
-
+error_reporting(0);
 $_configs = scandir((dirname(__FILE__) . '/configs/'));
 foreach (array_splice($_configs, 3) as $config) {
     require((dirname(__FILE__) . '/configs/' . $config));
@@ -17,6 +17,7 @@ $_ENV['SITE_URL'] = ($_ENV['SITE_URL'] == 'default') ? "https://" . @$_SERVER['H
 $_ENV['SITE_EMAIL'] = $_ENV['SITE_EMAIL'];
 $_ENV['APP_DIR'] = dirname(__FILE__);
 error_reporting(($_ENV['DEBUG'] != 'true') ? 0 : E_ALL);
+
 date_default_timezone_set($_ENV['TIME_ZONE']);
 define('PEPPER', $_ENV['PEPPER']);
 define('KEY', $_ENV['KEY']);
