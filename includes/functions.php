@@ -67,19 +67,11 @@ class functions
         return preg_replace('/(\W)&(\W)/', '$1&amp;$2', (preg_replace('/\W+$/', ' ', preg_replace('/\w+$/', '', $out)))) . $append;
     }
 
-    static function encodeIt($input)
+    static function encodeIt($value)
     {
-        $inputs = \base64_decode($input);
-        $result = \openssl_decrypt($input, 'AES-256-CBC', PEPPER, OPENSSL_RAW_DATA, KEY);
-        return $result;
+        return password_hash($value, PASSWORD_DEFAULT);
     }
 
-    static function decodeIt($input)
-    {
-        $inputs = \base64_encode($input);
-        $result = \openssl_encrypt($input, 'AES-256-CBC', PEPPER, OPENSSL_RAW_DATA, KEY);
-        return $result;
-    }
 
     static function alphaNum($val)
     {

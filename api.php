@@ -19,11 +19,6 @@ $_ENV['APP_DIR'] = dirname(__FILE__);
 error_reporting(($_ENV['DEBUG'] != 'true') ? 0 : E_ALL);
 
 date_default_timezone_set($_ENV['TIME_ZONE']);
-define('PEPPER', $_ENV['PEPPER']);
-define('KEY', $_ENV['KEY']);
-
-
-
 
 ini_set('SMTP', $_ENV['SMTP']);
 ini_set('smtp_port', $_ENV['smtp_port']);
