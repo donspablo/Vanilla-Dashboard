@@ -40,12 +40,9 @@ class signin
 
         function sign($db, $username, $password)
         {
-            $usrname = htmlspecialchars($username);
-            $pass = functions::encodeIt($password);
-
             $compClause = new aacompositewhereclause();
-            $compClause->add(new simplewhereclause($usrname, '=', $usrname, $_ENV['STRING_COMPARISON']));
-            $compClause->add(new simplewhereclause($pass, '=', $pass, $_ENV['STRING_COMPARISON']));
+            $compClause->add(new simplewhereclause($_ENV['USERNAME'], '=', htmlspecialchars($username), $_ENV['STRING_COMPARISON']));
+            $compClause->add(new simplewhereclause($_ENV['PASSWORD'], '=', functions::encodeIt($password), $_ENV['STRING_COMPARISON']));
             $userdata = $db->selectWhere('users.txt', $compClause, 1);
 
             foreach ($userdata as $item => $row) {
@@ -134,7 +131,7 @@ class signin
 
             $userdata = $db->selectWhere(
                 'users.txt',
-                new simplewhereclause(USER_EMAIL, '=', $useremail)
+                new simplewhereclause($_ENV['USER_EMAIL'], '=', $useremail)
             );
 
             if (empty($userdata)) {
@@ -157,7 +154,7 @@ class signin
 
                 $db->updateSetWhere(
                     'users.txt', [
-                    PASSWORD => $newpass,
+                    $_ENV['PASSWORD'] => $newpass,
                 ],
                     new simplewhereclause(
                         USER_ID, '=', $uid
@@ -192,17 +189,11 @@ class signin
         {
             $userdata = '';
 
-            define('USER_ID', 0);
-            define('USERNAME', 1);
-            define('PASSWORD', 2);
-            define('USER_EMAIL', 3);
-            define('DATE_CREATED', 4);
-
             $usrname = htmlspecialchars(functions::alphaNum($username));
 
             $userdata = $db->selectWhere(
                 'users.txt',
-                new SimpleWhereClause(USERNAME, '=', $usrname)
+                new SimpleWhereClause($_ENV['USERNAME'], '=', $usrname)
             );
 
             return (empty($userdata)) ? '0' : '1';

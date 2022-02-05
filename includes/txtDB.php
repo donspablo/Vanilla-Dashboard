@@ -125,7 +125,7 @@ class txtDB
             $tablename,
             null,
             1,
-            new OrderBy($idField, DESCENDING, $_ENV['INTEGER_COMPARISON'])
+            new OrderBy($idField, $_ENV['DESCENDING'], $_ENV['INTEGER_COMPARISON'])
         );
         $newId = ($rows) ? $rows[0][$idField] + 1 : 1;
         $newRow[$idField] = $newId;
