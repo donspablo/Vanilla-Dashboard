@@ -1134,17 +1134,17 @@ html:hover body>canvas {
 }
 #messages {
     min-height: 500px;
-    background: repeating-radial-gradient(black, transparent 200px);
+    background: linear-gradient(2deg, black, transparent);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     padding-left: 12px
 }
 #messages .even {
-    background: rgba(23, 23, 23, 0.9)
+    background: rgba(23, 23, 23, 0.75)
 }
 #messages .odd {
-    background: rgba(1, 1, 1, 0.9)
+    background: rgba(1, 1, 1, 0.80)
 }
 #messages .message {
     padding: 3px 5px
@@ -58892,5 +58892,5 @@ div.k-scheduler-marquee:before, div.k-scheduler-marquee:after {
     padding: 0
 }
 #defaultCanvas0 {
-    position: relative !important
+    display: none !important
 }
