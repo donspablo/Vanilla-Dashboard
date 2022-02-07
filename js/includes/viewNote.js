@@ -1,4 +1,3 @@
-
 class viewNote {
     constructor() {
         var noteTitleReq = "The Note's Title can not be empty.";
@@ -89,4 +88,3 @@ class viewNote {
     }
 }
 
-//new viewNote();

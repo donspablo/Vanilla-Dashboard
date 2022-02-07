@@ -13,28 +13,28 @@ class functions
     {
         $theDate = date('F d, Y', strtotime($v));
 
-        return $theDate;                                // March 07, 2016
+        return $theDate;
     }
 
     static function shortMonthFormat($v)
     {
         $theDate = date('M d, Y', strtotime($v));
 
-        return $theDate;                                // Mar 07, 2016
+        return $theDate;
     }
 
     static function shortMonthTimeFormat($v)
     {
         $theDate = date('M d, Y  H:i', strtotime($v));
 
-        return $theDate;                                // Mar 07, 2016 09:30
+        return $theDate;
     }
 
     static function dbDateFormat($v)
     {
         $theDate = date('Y-m-d', strtotime($v));
 
-        return $theDate;                                // 2016-03-07
+        return $theDate;
     }
 
     static function ellipsis($text, $max = '', $append = '&hellip;')

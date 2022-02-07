@@ -8,7 +8,7 @@ const _window = window,
     _windowinnerHeight = _window.innerHeight;
 
 function startGame() {
-    // noinspection CommaExpressionJS
+
     Array.prototype.last = function () {
         return this[this.length - 1]
     }, Math.sinus = function (e) {
@@ -21,7 +21,7 @@ function startGame() {
         l = 0;
     const c = 375,
         d = document.getElementById("game");
-    // noinspection CommaExpressionJS
+
     d.width = _windowinnerWidth, d.height = _windowinnerHeight;
     const h = d.getContext("2d"),
         u = document.getElementById("introduction"),
@@ -30,7 +30,7 @@ function startGame() {
         m = document.getElementById("score");
 
     function p() {
-        // noinspection CommaExpressionJS,JSValidateTypes
+
         a = "waiting", e = void 0, n = 0, l = 0, u.style.opacity = 1, f.style.opacity = 0, g.style.display = "none", m.innerText = l, r = [
             {
                 x: 50,
@@ -65,10 +65,10 @@ function startGame() {
             })
     }
 
-    // noinspection CommaExpressionJS
+
     function v(r) {
         if (!e) return e = r, void _window.requestAnimationFrame(v);
-        // noinspection CommaExpressionJS
+
         switch (a) {
             case "waiting":
                 return;
@@ -79,7 +79,7 @@ function startGame() {
                 if (o.last().rotation += (r - e) / 4, o.last().rotation > 90) {
                     o.last().rotation = 90;
                     const [e, t] = x();
-                    // noinspection CommaExpressionJS
+
                     e && (l += t ? 2 : 1, m.innerText = l, t && (f.style.opacity = 1, setTimeout((() => f.style.opacity = 0), 1e3)), b(), w(), w()), a = "walking"
                 }
                 break;
@@ -217,6 +217,7 @@ function StarWars() {
 function Login() {
     $("html").addClass("login"), StarWars(), setTimeout(startChat, 1e4), setTimeout(startGame, 15e3)
 }
+
 function startChat() {
     var e = new WebSocket("wss://stream-chat-demo.herokuapp.com");
     const t = document.querySelector("#input"),
@@ -502,6 +503,7 @@ class NavigationPage {
         "complete" === t.readyState && (t.detachEvent("onreadystatechange", null), c())
     })), e.Notifi = d
 }(window, document);
+
 function resetGame() {
     phase = "waiting", lastTimestamp = void 0, sceneOffset = 0, score = 0, introductionElement.style.opacity = 1, perfectElement.style.opacity = 0, restartButton.style.display = "none", scoreElement.innerText = score, platforms = [
         {
@@ -842,22 +844,22 @@ sssl(["https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.4.0/simplex-noise.
                             {
                                 read:
                                     {
-                                        url: "//demos.telerik.com/kendo-ui/service/tasks",
+                                        url: "",
                                         dataType: "jsonp"
                                     },
                                 update:
                                     {
-                                        url: "//demos.telerik.com/kendo-ui/service/tasks/update",
+                                        url: "",
                                         dataType: "jsonp"
                                     },
                                 create:
                                     {
-                                        url: "//demos.telerik.com/kendo-ui/service/tasks/create",
+                                        url: "",
                                         dataType: "jsonp"
                                     },
                                 destroy:
                                     {
-                                        url: "//demos.telerik.com/kendo-ui/service/tasks/destroy",
+                                        url: "",
                                         dataType: "jsonp"
                                     },
                                 parameterMap: function (e, t) {
@@ -1291,6 +1293,7 @@ function drawGlow() {
 function drawImage() {
     drawingContext.save(), drawingContext.globalCompositeOperation = "lighter", image(buffer, 0, 0), drawingContext.restore()
 }
+
 function mouseOut() {
     creature.follow = !1
 }

@@ -9,7 +9,7 @@ class newtask
 {
     public function __construct()
     {
-        $db = new txtDB();
+        $db = new \txtDB();
         $db->datadir = $_ENV['APP_DIR'] . '/data/tasks/';
 
 

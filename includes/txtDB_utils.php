@@ -1,8 +1,5 @@
 <?php
 
-namespace vandash\includes;
-
-
 define('FLOAT_COL', 'float');
 define('INT_COL', 'int');
 define('STRING_COL', 'string');
@@ -29,9 +26,7 @@ class JoinColumn
 
 class TableUtils
 {
-    /*
-     * Finds JoinColumns in an array of tables, and adds 'type' fields by looking up the columns
-     */
+
     public function resolveJoins(&$tables)
     {
         foreach ($tables as $tablename => $discard) {
@@ -45,7 +40,7 @@ class TableUtils
         }
     }
 
-    // Access private
+
     public function resolveColumnJoin(&$columndef, &$tables)
     {
         $columndef->type = $tables[$columndef->tablename][$columndef->columnname]->type;
@@ -62,9 +57,7 @@ class TableUtils
         }
     }
 
-    /*
-     * Creates a "row schema" for a given table definition.
-     */
+
     public function createRowSchema(&$tabledef)
     {
         $row_schema = [];

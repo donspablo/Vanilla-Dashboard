@@ -1,5 +1,3 @@
-
-
 class viewTask {
     constructor() {
         var taskTitleReq = "The Task's Title can not be empty.";
@@ -67,7 +65,7 @@ class viewTask {
                 return false;
             }
 
-            // Start the AJAX
+
             var post_data = {
                 'requestType': 'updateData',
                 'taskTitle': taskTitle,
@@ -84,7 +82,7 @@ class viewTask {
             };
             $.post('./api.php?viewtask', post_data, function (data) {
                 if (data == '1') {
-                    // All is good!
+
                     Notifi.addNotification({
                         color: 'success',
                         text: taskUpdatedMsg,
@@ -94,7 +92,7 @@ class viewTask {
 
                     loadStatus();
 
-                    // Resize the Text Boxes to fit the updated content
+
                     $(".autosize").each(function () {
                         resizeTextArea($(this));
                     });
@@ -103,7 +101,7 @@ class viewTask {
                         scrollTop: 0
                     }, 100);
                 } else {
-                    // Unknown error
+
                     Notifi.addNotification({
                         color: 'danger',
                         text: updateError,
@@ -175,4 +173,3 @@ class viewTask {
 
 }
 
-//new viewTask();

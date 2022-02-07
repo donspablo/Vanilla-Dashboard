@@ -2,17 +2,14 @@
 
 namespace vandash\services;
 
-
-use vandash\includes\aacompositewhereclause;
 use vandash\includes\functions;
-use vandash\includes\simplewhereclause;
 use vandash\includes\txtDB;
 
 class signin
 {
     public function __construct()
     {
-        $db = new txtDB();
+        $db = new \txtDB();
         $db->datadir = $_ENV['APP_DIR'] . '/data/';
 
         $mode = $_POST['requestType'];
@@ -40,18 +37,10 @@ class signin
 
     function sign($db, $username, $password)
     {
-        $compClause = new aacompositewhereclause();
-        print_r(11111);
-        print_r($compClause);
-        $compClause->add(new simplewhereclause($_ENV['USERNAME'], '=', htmlspecialchars($username), $_ENV['STRING_COMPARISON']));
-        print_r(22222);
-        print_r($compClause);
-        $compClause->add(new simplewhereclause($_ENV['PASSWORD'], '=', functions::encodeIt($password), $_ENV['STRING_COMPARISON']));
-        print_r(33333);
-        print_r($compClause);
+        $compClause = new \CompositeWhereClause();
+        $compClause->add(new \SimpleWhereClause($_ENV['USERNAME'], '=', htmlspecialchars($username), $_ENV['STRING_COMPARISON']));
+        $compClause->add(new \SimpleWhereClause($_ENV['PASSWORD'], '=', functions::encodeIt($password), $_ENV['STRING_COMPARISON']));
         $userdata = $db->selectWhere('users.txt', $compClause, 1);
-        print_r(44444);
-        print_r($userdata);
 
         foreach ($userdata as $item => $row) {
             $_SESSION['st']['userId'] = $row[0];
@@ -65,18 +54,18 @@ class signin
     function signup($db, $username, $useremail, $password)
     {
         $userdata = '';
-        // Get $_POST data
+
         $usrname = htmlspecialchars(functions::alphaNum($username));
         $usremail = htmlspecialchars($useremail);
         $pass = functions::encodeIt($password);
         $dateCreated = date('Y-m-d H:i:s');
 
-        // Generate a RANDOM Hash
+
         $randomHash = uniqid(rand());
-        // Take the first 8 hash digits and use it as the User's ID
+
         $randHash = substr($randomHash, 0, 8);
 
-        // Set the values to insert
+
         $newuser[$_ENV['USER_ID']] = $randHash;
         $newuser[$_ENV['USERNAME']] = $usrname;
         $newuser[$_ENV['PASSWORD']] = $pass;
@@ -92,16 +81,16 @@ class signin
         $userinfo[$_ENV['USERNAME']] = $usrname;
         $userinfo[$_ENV['DATE_CREATED']] = $dateCreated;
 
-        // Define the File to be created
+
         $userFile = $usrname . '-' . $randHash;
 
-        // Insert the data
+
         $new_user = $db->insert(
             $userFile . '.txt',
             $userinfo
         );
 
-        // Send out Notification Email to the New User
+
         $subject = $_ENV['SITE_NAME'] . ' New Account Created';
 
         $message = '<html><body>';
@@ -122,13 +111,13 @@ class signin
 
         mail($usremail, $subject, $message, $headers);
 
-        // Check if the file was created
+
         $checkFile = $_ENV['APP_DIR'] . '/data/' . $userFile . '.txt';
 
         if (file_exists($checkFile)) {
-            echo '1';    // All is good!
+            echo '1';
         } else {
-            echo '0';    // Nope, error...
+            echo '0';
         }
     }
 
@@ -139,7 +128,7 @@ class signin
 
         $userdata = $db->selectWhere(
             'users.txt',
-            new simplewhereclause($_ENV['USER_EMAIL'], '=', $useremail)
+            new \SimpleWhereClause($_ENV['USER_EMAIL'], '=', $useremail)
         );
 
         if (empty($userdata)) {
@@ -164,7 +153,7 @@ class signin
                 'users.txt', [
                 $_ENV['PASSWORD'] => $newpass,
             ],
-                new simplewhereclause(
+                new \SimpleWhereClause(
                     USER_ID, '=', $uid
                 )
             );
@@ -189,7 +178,7 @@ class signin
 
             mail($useremail, $subject, $message, $headers);
 
-            echo  '1';
+            echo '1';
         }
     }
 
@@ -201,7 +190,7 @@ class signin
 
         $userdata = $db->selectWhere(
             'users.txt',
-            new simplewhereclause($_ENV['USERNAME'], '=', $usrname, $_ENV['DEFAULT_COMPARISON'])
+            new \SimpleWhereClause($_ENV['USERNAME'], '=', $usrname, $_ENV['DEFAULT_COMPARISON'])
         );
 
         echo (empty($userdata)) ? '0' : '1';
@@ -215,7 +204,7 @@ class signin
 
         $userdata = $db->selectWhere(
             'users.txt',
-            new simplewhereclause($_ENV['USER_EMAIL'], '=', $useremail,$_ENV['DEFAULT_COMPARISON'])
+            new \SimpleWhereClause($_ENV['USER_EMAIL'], '=', $useremail, $_ENV['DEFAULT_COMPARISON'])
         );
 
         echo empty($userdata) ? '0' : '1';

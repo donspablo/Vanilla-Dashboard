@@ -2,7 +2,7 @@
 
 namespace vandash\config;
 
-// Tasks
+
 $_ENV['USER_ID'] = 0;
 $_ENV['TASK_ID'] = 1;
 $_ENV['TASK_TITLE'] = 2;
@@ -18,7 +18,6 @@ $_ENV['TASK_STATUS'] = 11;
 $_ENV['UPDATE_DATE'] = 12;
 
 
-// txtDB
 $_ENV['DEFAULT_COMPARISON'] = '';
 $_ENV['STRING_COMPARISON'] = 'strcmp';
 $_ENV['INTEGER_COMPARISON'] = 'intcmp';
@@ -26,13 +25,13 @@ $_ENV['NUMERIC_COMPARISON'] = 'numcmp';
 $_ENV['ASCENDING'] = 1;
 $_ENV['DESCENDING'] = -1;
 
-// Notes
+
 $_ENV['NOTE_ID'] = 1;
 $_ENV['NOTE_TITLE'] = 2;
 $_ENV['NOTE_DATE'] = 3;
 $_ENV['NOTE_TEXT'] = 4;
 
-//Profile
+
 $_ENV['USER_ID'] = 0;
 $_ENV['USERNAME'] = 1;
 $_ENV['PASSWORD'] = 2;

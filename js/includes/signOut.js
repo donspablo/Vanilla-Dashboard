@@ -17,4 +17,3 @@ class signOut {
     }
 }
 
-//new signOut();

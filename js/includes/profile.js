@@ -1,5 +1,3 @@
-
-
 class profile {
     constructor() {
         e.preventDefault();
@@ -38,7 +36,7 @@ class profile {
             return false;
         }
 
-        // Start the AJAX
+
         var post_data = {
             'userEmail': userEmail,
             'password1': password1,
@@ -48,7 +46,7 @@ class profile {
         };
         $.post('./api.php?profile', post_data, function (data) {
             if (data == '1') {
-                // All is good!
+
                 Notifi.addNotification({
                     color: 'success',
                     text: accUpdated,
@@ -57,7 +55,7 @@ class profile {
                 });
                 $("#password1, #password2").val('')
             } else {
-                // Unknown error
+
                 Notifi.addNotification({
                     color: 'danger',
                     text: errorText,
@@ -73,4 +71,3 @@ class profile {
 
 }
 
-//new profile();

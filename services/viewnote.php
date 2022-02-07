@@ -9,17 +9,17 @@ class viewnote
 {
     public function __construct()
     {
-        $db = new txtDB();
-        /** @noinspection GlobalVariableUsageInspection */
+        $db = new \txtDB();
+
         $db->datadir = $_ENV['APP_DIR'] . '/data/notes/';
 
-        /** @noinspection GlobalVariableUsageInspection */
+
         $noteTitle = htmlspecialchars($_POST['noteTitle']);
-        /** @noinspection GlobalVariableUsageInspection */
+
         $notesText = $this->encodeIt($_POST['notesText']);
-        /** @noinspection GlobalVariableUsageInspection */
+
         $noteId = htmlspecialchars($_POST['noteId']);
-        /** @noinspection GlobalVariableUsageInspection */
+
         $updatDate = htmlspecialchars($_POST['updatDate']);
         $now = date('Y-m-d H:i:s');
 
@@ -28,7 +28,7 @@ class viewnote
             NOTE_TITLE => $noteTitle,
             UPDATE_DATE => $now,
         ],
-            new SimpleWhereClause(
+            new \SimpleWhereClause(
                 NOTE_ID, '=', $noteId
             )
         );
@@ -38,7 +38,7 @@ class viewnote
             NOTE_TEXT => $notesText,
             UPDATE_DATE => $now,
         ],
-            new SimpleWhereClause(
+            new \SimpleWhereClause(
                 NOTE_ID, '=', $noteId
             )
         );
@@ -50,5 +50,5 @@ class viewnote
 
 }
 
-/** @noinspection GlobalVariableUsageInspection */
+
 if (isset($_GET['viewnote'])) new viewnote();

@@ -1,4 +1,3 @@
-
 class signIn {
 
     constructor() {
@@ -32,7 +31,7 @@ class signIn {
                 };
                 $.post('./api.php?signin', post_data, function (data) {
                     if (data == '1') {
-                        // Duplicate Username found
+
                         Notifi.addNotification({
                             color: 'warning',
                             text: dupUsername1 + ' "' + username + '". ' + dupUsername2,
@@ -40,7 +39,7 @@ class signIn {
                             timeout: 12000
                         });
 
-                        // Reset the form fields
+
                         $("#newusername").val('');
                     }
                 });
@@ -63,14 +62,14 @@ class signIn {
             var useremail = $("#newemail").val();
 
             if (useremail != '') {
-                // Start the AJAX
+
                 var post_data = {
                     'useremail': useremail,
                     'requestType': 'emailcheck'
                 };
                 $.post('./api.php?signin', post_data, function (data) {
                     if (data == '1') {
-                        // Duplicate Email found
+
                         Notifi.addNotification({
                             color: 'warning',
                             text: dupEmail,
@@ -78,7 +77,7 @@ class signIn {
                             timeout: 12000
                         });
 
-                        // Reset the form fields
+
                         $("#newemail").val('');
                     }
                 });
@@ -118,7 +117,6 @@ class signIn {
             Login();
 
 
-            // Start the AJAX
             var post_data = {
                 'username': username,
                 'password': password,
@@ -127,7 +125,7 @@ class signIn {
             $.post('./api.php?signin', post_data, function (resdata) {
                 var datacheck = $.parseJSON(resdata).length;
                 if (datacheck === 0) {
-                    // Unknown error
+
                     Notifi.addNotification({
                         color: 'warning',
                         text: invalidSignin,
@@ -135,12 +133,12 @@ class signIn {
                         timeout: 12000
                     });
 
-                    // Reset the form fields
+
                     $("#username, #password").val('');
                 } else {
                     $.each($.parseJSON(resdata), function (idx, obj) {
                         if (obj[0] != '') {
-                            // All is good!
+
                             Notifi.addNotification({
                                 color: 'success',
                                 text: signinSuccess,
@@ -149,13 +147,13 @@ class signIn {
                             });
                             fields
 
-                            // Reset the form
+
                             $("#username, #password").val('');
 
-                            // Redirect after 1.5 Seconds
+
                             window.setTimeout($('html').addClass('login'), 5000);
                         } else {
-                            // Unknown error
+
                             Notifi.addNotification({
                                 color: 'danger',
                                 text: signinError,
@@ -211,7 +209,6 @@ class signIn {
             Login();
 
 
-            // Start the AJAX
             var post_data = {
                 'username': username,
                 'useremail': useremail,
@@ -220,7 +217,7 @@ class signIn {
             };
             $.post('./api.php?signin', post_data, function (data) {
                 if (data == '1') {
-                    // All is good!
+
                     Notifi.addNotification({
                         color: 'success',
                         text: newAccCreated,
@@ -228,10 +225,10 @@ class signIn {
                         timeout: 10000
                     });
 
-                    // Reset the form fields
+
                     $("#newusername, #newemail, #newpass").val('');
                 } else {
-                    // Unknown error
+
                     Notifi.addNotification({
                         color: 'danger',
                         text: newAccError,
@@ -258,14 +255,14 @@ class signIn {
                 return false;
             }
 
-            // Start the AJAX
+
             var post_data = {
                 'useremail': useremail,
                 'requestType': 'resetpass'
             };
             $.post('./api.php?signin', post_data, function (data) {
                 if (data == '1') {
-                    // All is good!
+
                     Notifi.addNotification({
                         color: 'success',
                         text: passResetSuccess,
@@ -273,10 +270,10 @@ class signIn {
                         timeout: 10000
                     });
 
-                    // Reset the form fields
+
                     $("#accountEmail").val('');
                 } else if (data == '0') {
-                    // Unknown error
+
                     Notifi.addNotification({
                         color: 'danger',
                         text: noAccError,
@@ -284,10 +281,10 @@ class signIn {
                         timeout: 12000
                     });
 
-                    // Reset the form fields
+
                     $("#accountEmail").val('');
                 } else {
-                    // Unknown error
+
                     Notifi.addNotification({
                         color: 'danger',
                         text: resetPassError,
@@ -295,7 +292,7 @@ class signIn {
                         timeout: 12000
                     });
 
-                    // Reset the form fields
+
                     $("#accountEmail").val('');
                 }
             });

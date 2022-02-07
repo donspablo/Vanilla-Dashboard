@@ -9,7 +9,7 @@ class viewtask
 {
     public function __construct()
     {
-        $db = new txtDB();
+        $db = new \txtDB();
         $db->datadir = $_ENV['APP_DIR'] . '/data/tasks/';
 
         $mode = $_POST['requestType'];
@@ -54,7 +54,7 @@ class viewtask
             TASK_STATUS => $taskStatus,
             UPDATE_DATE => $now,
         ],
-            new SimpleWhereClause(
+            new \SimpleWhereClause(
                 TASK_ID, '=', $taskId
             )
         );
@@ -66,7 +66,7 @@ class viewtask
             TASK_STATUS => $taskStatus,
             UPDATE_DATE => $now,
         ],
-            new SimpleWhereClause(
+            new \SimpleWhereClause(
                 TASK_ID, '=', $taskId
             )
         );
@@ -81,7 +81,7 @@ class viewtask
 
         $taskdata = $db->selectWhere(
             'tasks.txt',
-            new SimpleWhereClause(TASK_ID, '=', $taskId)
+            new \SimpleWhereClause(TASK_ID, '=', $taskId)
         );
 
         echo json_encode($taskdata);

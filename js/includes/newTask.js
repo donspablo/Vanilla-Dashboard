@@ -1,5 +1,3 @@
-
-
 class newTask {
     constructor() {
         var taskReqText = 'The New Task will need a Title.';
@@ -60,7 +58,7 @@ class newTask {
                 return false;
             }
 
-            // Start the API
+
             var post_data = {
                 'taskTitle': taskTitle,
                 'dateAssigned': dateAssigned,
@@ -71,7 +69,7 @@ class newTask {
             };
             $.post('./api.php?newtask', post_data, function (data) {
                 if (data == '1') {
-                    // All is good!
+
                     Notifi.addNotification({
                         color: 'success',
                         text: newTaskSaved,
@@ -80,7 +78,7 @@ class newTask {
                     });
                     $("#taskTitle, #dateAssigned, #dateDue, #taskType, #taskRef, #taskDesc").val('');
                 } else {
-                    // Unknown error
+
                     Notifi.addNotification({
                         color: 'danger',
                         text: errorText,
@@ -94,4 +92,3 @@ class newTask {
     }
 }
 
-//new newTask();

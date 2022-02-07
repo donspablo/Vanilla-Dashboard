@@ -1,7 +1,5 @@
 <?php
 
-//Boostrap: DIY autoloader to initialise API
-
 
 namespace vandash;
 error_reporting(0);
@@ -31,6 +29,8 @@ $_includes = scandir((dirname(__FILE__) . '/includes/'));
 foreach (array_splice($_includes, 3) as $include) {
     require((dirname(__FILE__) . '/includes/' . $include));
 }
+
+require_once $_ENV['APP_DIR'] . "/core/store.php";
 
 $_services = scandir($_ENV['APP_DIR'] . '/services/');
 foreach (array_splice($_services, 3) as $service) {

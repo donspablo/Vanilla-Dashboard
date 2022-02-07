@@ -8,7 +8,7 @@ class tasks
 {
     public function __construct()
     {
-        $db = new txtDB();
+        $db = new \txtDB();
         $db->datadir = $_ENV['APP_DIR'] . '/data/tasks/';
 
         $taskid = htmlspecialchars($_POST['taskid']);
@@ -27,7 +27,7 @@ class tasks
         define('TASK_STATUS', 11);
         define('UPDATE_DATE', 12);
 
-        $db->deleteWhere('tasks.txt', new AndWhereClause(new SimpleWhereClause(TASK_ID, '=', $taskid, $_ENV['STRING_COMPARISON'])));
+        $db->deleteWhere('tasks.txt', new AndWhereClause(new \SimpleWhereClause(TASK_ID, '=', $taskid, $_ENV['STRING_COMPARISON'])));
 
         unlink($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt');
         unlink($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt.lock');

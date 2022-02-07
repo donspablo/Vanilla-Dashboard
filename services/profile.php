@@ -8,7 +8,7 @@ class profile
 {
     public function __construct()
     {
-        $db = new txtDB();
+        $db = new \txtDB();
         $db->datadir = $_ENV['APP_DIR'] . '/data/';
 
 
@@ -23,7 +23,7 @@ class profile
             PASSWORD => $password,
             USER_EMAIL => $userEmail,
         ],
-            new SimpleWhereClause(
+            new \SimpleWhereClause(
                 USER_ID, '=', $uid
             )
         );

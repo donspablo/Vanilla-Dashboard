@@ -11,7 +11,7 @@ class ping
 
     public function __construct()
     {
-        $this->db = new txtDB();
+        $this->db = new \txtDB();
         $this->db->datadir = $_ENV['APP_DIR'] . '/data/';
 
         $token = (isset($_GET['token']) && preg_match('/^[0-9a-f]{8}$/', $_GET['token'])) ? $_GET['token'] : false;
@@ -20,7 +20,7 @@ class ping
             $token = sprintf('%08x', crc32(microtime()));
         }
 
-        $quadrant = ceil(date_create()->format('s') / 15); // between 1-4
+        $quadrant = ceil(date_create()->format('s') / 15);
         $previousQuadrant = $quadrant - 1 < 1 ? 4 : $quadrant - 1;
         $key = 'pinger_' . $quadrant;
         $previousKey = 'pinger_' . $previousQuadrant;

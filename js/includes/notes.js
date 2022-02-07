@@ -1,5 +1,3 @@
-
-
 class notes {
     constructor() {
         var deleteNoteTitle = 'Delete Note Confirmation';
@@ -35,18 +33,18 @@ class notes {
 
                 var noteid = $(this).closest("p").find("input").val();
 
-                // Start the API
+
                 var post_data = {
                     'noteid': noteid
                 };
                 $.post('./api.php?notes', post_data, function (data) {
                     if (data == '1') {
-                        // All is good!
+
                         setTimeout(function () {
                             location.reload();
                         }, 250);
                     } else {
-                        // Unknown error
+
                         Notifi.addNotification({
                             color: 'danger',
                             text: deleteError,
@@ -60,4 +58,3 @@ class notes {
     }
 }
 
-//new Note();

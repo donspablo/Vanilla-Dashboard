@@ -3,14 +3,14 @@ class newNote {
         $('#newNote').click(function (e) {
             e.preventDefault();
 
-            // Start the API
+
             var post_data = {
                 'noteTitle': noteTitle,
                 'notesText': notesText
             };
             $.post('./api.php?newnote', post_data, function (data) {
                 if (data == '1') {
-                    // All is good!
+
                     Notifi.addNotification({
                         color: 'success',
                         text: newNoteText,
@@ -19,7 +19,7 @@ class newNote {
                     });
                     $("#noteTitle, #notesText").val('');
                 } else {
-                    // Unknown error
+
                     Notifi.addNotification({
                         color: 'danger',
                         text: errorText,
@@ -33,4 +33,3 @@ class newNote {
     }
 }
 
-//new newNote();
