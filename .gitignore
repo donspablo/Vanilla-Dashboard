@@ -1,7 +1,6 @@
 *
 !package.json
 .src/
-!bundles/
 !.gitignore
 !.lando.yml
 !api.php
@@ -14,7 +13,6 @@
 !serviceworker.js
 .idea/
 configs/
-packages/*
 config
 !configs/.htaccess
 !configs/.dotenv.php
@@ -44,5 +42,4 @@ includes/*
 !js/*
 !services/*
 !sample.env
-!packages/dashboard.package
-!packages/flow.package
+!.htaccess

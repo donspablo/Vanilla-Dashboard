@@ -1083,6 +1083,12 @@ html:hover body > canvas {
     animation: intro 9s ease-out 0s
 }
 
+.logo > img{
+    height:75px!important;
+    width:auto;
+    margin:40% auto;
+}
+
 .starwars .logo {
     opacity: 0;
     -webkit-animation: logo 10s ease-out 9s;

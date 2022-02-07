@@ -25455,13 +25455,16 @@ $("form :input[required='required']").blur((function () {
 }));
 var signoutNotification = null;
 
-function ifUrlExists(e) {
-    try {
-        var t = new XMLHttpRequest;
-        return t.open("HEAD", e, !1), t.send(), 200 == t.status
-    } catch (e) {
-        return !1
-    }
+function UrlExists(url, cb) {
+    jQuery.ajax({
+        url: url,
+        dataType: 'text',
+        type: 'GET',
+        complete: function (xhr) {
+            if (typeof cb === 'function')
+                cb.apply(this, [xhr.status]);
+        }
+    });
 }
 
 $("#signout").click((function (e) {
@@ -25475,13 +25478,17 @@ $("#signout").click((function (e) {
     }))
 })), sssl(["./js/includes/newNote.js", "./js/includes/newTask.js", "./js/includes/notes.js", "./js/includes/profile.js", "./js/includes/signIn.js", "./js/includes/signOut.js", "./js/includes/viewNote.js", "./js/includes/viewTask.js"], (function () {
 }));
-var dashURL = "http://localhost:8000/flow/#main";
-if (ifUrlExists(dashURL)) {
-    var iframe = document.createElement("iframe");
-    iframe.src = dashURL, iframe.id = "dashBoardWrapper";
-    var iframe2 = document.createElement("iframe");
-    iframe2.src = dashURL, iframe2.id = "dashBoardEditor", $("#tab-graphql *").remove(), $("#tab-graphql").html(iframe + iframe2)
-}
+var dashURL = "http://localhost:8000/";
+
+UrlExists(dashURL, function (status) {
+    if (status === 200) {
+
+        var iframe = document.createElement("iframe");
+        iframe.src = dashURL, iframe.id = "dashBoardWrapper";
+        var iframe2 = document.createElement("iframe");
+        iframe2.src = dashURL + "flow/#main", iframe2.id = "dashBoardEditor", $("#tab-graphql *").remove(), $("#tab-graphql").html(iframe + iframe2)
+    } 
+});
 
 function startChat() {
     var e = new WebSocket("wss://stream-chat-demo.herokuapp.com");
