@@ -1,10 +1,5 @@
 <?php
 
-define('FLOAT_COL', 'float');
-define('INT_COL', 'int');
-define('STRING_COL', 'string');
-define('DATE_COL', 'date');
-
 class Column
 {
     public function Column($index, $type)

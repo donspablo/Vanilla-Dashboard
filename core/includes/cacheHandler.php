@@ -1,11 +1,11 @@
 <?php
 
 
-namespace CoreDB\Classes;
+namespace coreDb\Classes;
 
 
-use CoreDB\cache;
-use CoreDB\queryBuilder;
+use coreDb\cache;
+use coreDb\queryBuilder;
 
 
 class cacheHandler

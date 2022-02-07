@@ -1,10 +1,10 @@
 <?php
 
-namespace CoreDB\Classes;
+namespace coreDb\Classes;
 
 use Closure;
-use CoreDB\Exceptions\iOException;
-use CoreDB\Exceptions\jsonException;
+use coreDb\Exceptions\iOException;
+use coreDb\Exceptions\jsonException;
 use Exception;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;

@@ -31,6 +31,7 @@ foreach (array_splice($_includes, 3) as $include) {
 }
 
 require_once $_ENV['APP_DIR'] . "/core/store.php";
+$_ENV['DBDIR'] = $_ENV['APP_DIR'] . "/data";
 
 $_services = scandir($_ENV['APP_DIR'] . '/services/');
 foreach (array_splice($_services, 3) as $service) {

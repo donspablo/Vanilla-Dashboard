@@ -1,10 +1,10 @@
 <?php
 
 
-namespace CoreDB\Classes;
+namespace coreDb\Classes;
 
 
-use CoreDB\Exceptions\invalidArgumentException;
+use coreDb\Exceptions\invalidArgumentException;
 
 
 class nestedHelper

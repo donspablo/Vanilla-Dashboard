@@ -114,8 +114,6 @@ class signIn {
             }
 
 
-            Login();
-
 
             var post_data = {
                 'username': username,
@@ -145,7 +143,6 @@ class signIn {
                                 icon: '<i class="fa fa-check"></i>',
                                 timeout: 10000
                             });
-                            fields
 
 
                             $("#username, #password").val('');
@@ -206,8 +203,6 @@ class signIn {
             }
 
 
-            Login();
-
 
             var post_data = {
                 'username': username,
@@ -224,6 +219,8 @@ class signIn {
                         icon: '<i class="fa fa-check"></i>',
                         timeout: 10000
                     });
+
+                    setTimeout(Login,1000);
 
 
                     $("#newusername, #newemail, #newpass").val('');

@@ -1,13 +1,13 @@
 <?php
 
 
-namespace CoreDB\Classes;
+namespace coreDb\Classes;
 
 
 use Closure;
-use CoreDB\coreDB;
-use CoreDB\Exceptions\invalidArgumentException;
-use CoreDB\queryBuilder;
+use coreDb\coreDb;
+use coreDb\Exceptions\invalidArgumentException;
+use coreDb\queryBuilder;
 
 
 class documentReducer
@@ -65,7 +65,7 @@ class documentReducer
                 $propertyName = $join['propertyName'];
 
 
-                if ($joinQuery instanceof queryBuilder || $joinQuery instanceof coreDB) {
+                if ($joinQuery instanceof queryBuilder || $joinQuery instanceof coreDb) {
                     $joinResult = $joinQuery->getQuery()->fetch();
                 } else if (is_array($joinQuery)) {
 

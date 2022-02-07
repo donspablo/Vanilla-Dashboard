@@ -44,7 +44,7 @@ class viewtask
         $now = date('Y-m-d H:i:s');
 
         $db->updateSetWhere(
-            'tasks.txt', [
+            'tasks', [
             TASK_TITLE => $taskTitle,
             TASK_DATE => $dateAssigned,
             DATE_DUE => $dateDue,
@@ -60,7 +60,7 @@ class viewtask
         );
 
         $db->updateSetWhere(
-            $taskId . '.txt', [
+            $taskId , [
             TASK_DESC => $taskDesc,
             TASK_NOTES => $taskNotes,
             TASK_STATUS => $taskStatus,
@@ -80,7 +80,7 @@ class viewtask
     {
 
         $taskdata = $db->selectWhere(
-            'tasks.txt',
+            'tasks',
             new \SimpleWhereClause(TASK_ID, '=', $taskId)
         );
 

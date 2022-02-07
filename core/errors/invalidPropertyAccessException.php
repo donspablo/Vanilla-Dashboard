@@ -1,6 +1,6 @@
 <?php
 
-namespace CoreDB\Exceptions;
+namespace coreDb\Exceptions;
 
 
 class invalidPropertyAccessException extends \Exception

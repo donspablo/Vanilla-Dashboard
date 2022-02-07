@@ -1,16 +1,16 @@
 <?php
 
-namespace CoreDB;
+namespace coreDb;
 
 use Closure;
-use CoreDB\Exceptions\invalidArgumentException;
+use coreDb\Exceptions\invalidArgumentException;
 
 if (false === class_exists("\Composer\Autoload\ClassLoader")) {
     require_once __DIR__ . '/store.php';
 }
 
 
-class coreDB
+class coreDb
 {
 
 
@@ -49,9 +49,9 @@ class coreDB
         return $this->store;
     }
 
-    public static function store(string $storeName, string $dataDir, array $configuration = []): coreDB
+    public static function store(string $storeName, string $dataDir, array $configuration = []): coreDb
     {
-        return new coreDB($storeName, $dataDir, $configuration);
+        return new coreDb($storeName, $dataDir, $configuration);
     }
 
     public function fetch(): array
@@ -119,19 +119,19 @@ class coreDB
         return $this->getQueryBuilder()->getQuery()->getCache()->getToken();
     }
 
-    public function select(array $fieldNames): coreDB
+    public function select(array $fieldNames): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->select($fieldNames));
         return $this;
     }
 
-    public function except(array $fieldNames): coreDB
+    public function except(array $fieldNames): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->except($fieldNames));
         return $this;
     }
 
-    public function where(...$conditions): coreDB
+    public function where(...$conditions): coreDb
     {
         foreach ($conditions as $key => $arg) {
             if ($key > 0) {
@@ -152,19 +152,19 @@ class coreDB
         return $this;
     }
 
-    public function in(string $fieldName, array $values = []): coreDB
+    public function in(string $fieldName, array $values = []): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->in($fieldName, $values));
         return $this;
     }
 
-    public function notIn(string $fieldName, array $values = []): coreDB
+    public function notIn(string $fieldName, array $values = []): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->notIn($fieldName, $values));
         return $this;
     }
 
-    public function orWhere(...$conditions): coreDB
+    public function orWhere(...$conditions): coreDb
     {
         foreach ($conditions as $key => $arg) {
             if ($key > 0) {
@@ -185,73 +185,73 @@ class coreDB
         return $this;
     }
 
-    public function skip(int $skip = 0): coreDB
+    public function skip(int $skip = 0): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->skip($skip));
         return $this;
     }
 
-    public function limit(int $limit = 0): coreDB
+    public function limit(int $limit = 0): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->limit($limit));
         return $this;
     }
 
-    public function orderBy(string $order, string $orderBy = '_id'): coreDB
+    public function orderBy(string $order, string $orderBy = '_id'): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->orderBy([$orderBy => $order]));
         return $this;
     }
 
-    public function search($field, string $keyword): coreDB
+    public function search($field, string $keyword): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->search($field, $keyword));
         return $this;
     }
 
-    public function join(Closure $joinedStore, string $dataPropertyName): coreDB
+    public function join(Closure $joinedStore, string $dataPropertyName): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->join($joinedStore, $dataPropertyName));
         return $this;
     }
 
-    public function makeCache(): coreDB
+    public function makeCache(): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->regenerateCache());
         return $this;
     }
 
-    public function disableCache(): coreDB
+    public function disableCache(): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->disableCache());
         return $this;
     }
 
-    public function useCache(int $lifetime = null): coreDB
+    public function useCache(int $lifetime = null): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->useCache($lifetime));
         return $this;
     }
 
-    public function deleteCache(): coreDB
+    public function deleteCache(): coreDb
     {
         $this->getQueryBuilder()->getQuery()->getCache()->delete();
         return $this;
     }
 
-    public function deleteAllCache(): coreDB
+    public function deleteAllCache(): coreDb
     {
         $this->getQueryBuilder()->getQuery()->getCache()->deleteAll();
         return $this;
     }
 
-    public function keepConditions(): coreDB
+    public function keepConditions(): coreDb
     {
         $this->shouldKeepConditions = true;
         return $this;
     }
 
-    public function distinct($fields = []): coreDB
+    public function distinct($fields = []): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->distinct($fields));
         return $this;
@@ -305,7 +305,7 @@ class coreDB
     }
 
 
-    public function nestedWhere(array $conditions): coreDB
+    public function nestedWhere(array $conditions): coreDb
     {
         $this->setQueryBuilder($this->getQueryBuilder()->nestedWhere($conditions));
         return $this;

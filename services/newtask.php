@@ -50,18 +50,18 @@ class newtask
         $taskFile = $uname . '-' . $randHash;
 
         $new_task = $db->insert(
-            'tasks.txt',
+            'tasks',
             $newtask
         );
 
         $task_data = $db->insert(
-            $taskFile . '.txt',
+            $taskFile ,
             $taskdata
         );
 
-        $checkFile = $_ENV['APP_DIR'] . '/data/tasks/' . $taskFile . '.txt';
+        $checkFile = $_ENV['APP_DIR'] . '/data/tasks/' . $taskFile ;
 
-        if (file_exists($checkFile)) echo '1'; else echo '0';
+        if (is_dir($checkFile)) echo '1'; else echo '0';
     }
 }
 

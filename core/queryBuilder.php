@@ -1,9 +1,9 @@
 <?php
 
-namespace CoreDB;
+namespace coreDb;
 
 use Closure;
-use CoreDB\Exceptions\invalidArgumentException;
+use coreDb\Exceptions\invalidArgumentException;
 
 class queryBuilder
 {

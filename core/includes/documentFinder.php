@@ -1,11 +1,11 @@
 <?php
 
 
-namespace CoreDB\Classes;
+namespace coreDb\Classes;
 
 
-use CoreDB\query;
-use CoreDB\Store;
+use coreDb\query;
+use coreDb\Store;
 use Exception;
 
 

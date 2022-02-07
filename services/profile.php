@@ -19,7 +19,7 @@ class profile
         $now = date('Y-m-d H:i:s');
 
         $db->updateSetWhere(
-            'users.txt', [
+            'USERS', [
             PASSWORD => $password,
             USER_EMAIL => $userEmail,
         ],

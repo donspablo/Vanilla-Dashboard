@@ -1,9 +1,9 @@
 <?php
 
-namespace CoreDB;
+namespace coreDb;
 
 use Closure;
-use CoreDB\Classes\ioHelper;
+use coreDb\Classes\ioHelper;
 use Exception;
 use ReflectionFunction;
 

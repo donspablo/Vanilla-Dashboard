@@ -1,15 +1,15 @@
 <?php
 
-namespace SleekDB;
+namespace coreDb;
 
 use Exception;
-use SleekDB\Classes\IoHelper;
-use SleekDB\Classes\NestedHelper;
-use SleekDB\Exceptions\IdNotAllowedException;
-use SleekDB\Exceptions\InvalidArgumentException;
-use SleekDB\Exceptions\InvalidConfigurationException;
-use SleekDB\Exceptions\IOException;
-use SleekDB\Exceptions\JsonException;
+use coreDb\Classes\IoHelper;
+use coreDb\Classes\NestedHelper;
+use coreDb\Exceptions\IdNotAllowedException;
+use coreDb\Exceptions\InvalidArgumentException;
+use coreDb\Exceptions\InvalidConfigurationException;
+use coreDb\Exceptions\IOException;
+use coreDb\Exceptions\JsonException;
 
 // To provide usage without composer, we need to require all files.
 if (false === class_exists("\Composer\Autoload\ClassLoader")) {
@@ -20,7 +20,7 @@ if (false === class_exists("\Composer\Autoload\ClassLoader")) {
         require_once $traits;
     }
     foreach (glob(__DIR__ . '/*.php') as $class) {
-        if (strpos($class, 'SleekDB.php') !== false || strpos($class, 'store.php') !== false) {
+        if (strpos($class, 'coreDb.php') !== false || strpos($class, 'store.php') !== false) {
             continue;
         }
         require_once $class;
@@ -105,15 +105,9 @@ class store
 
 
         if (array_key_exists("timeout", $configuration)) {
-            if ((!is_int($configuration['timeout']) || $configuration['timeout'] <= 0) && !($configuration['timeout'] === false)) {
-                throw new InvalidConfigurationException("timeout has to be an int > 0 or false");
-            }
             $this->timeout = $configuration["timeout"];
         }
         if ($this->timeout !== false) {
-            $message = 'The "timeout" configuration is deprecated and will be removed with the next major update.' .
-                ' Set the "timeout" configuration to false and if needed use the set_timeout_limit() function in your own code.';
-            trigger_error($message, E_USER_DEPRECATED);
             set_time_limit($this->timeout);
         }
 
@@ -223,7 +217,7 @@ class store
 
         if (isset($storeData[$primaryKey])) {
             throw new IdNotAllowedException(
-                "The \"$primaryKey\" index is reserved by SleekDB, please delete the $primaryKey key and try again"
+                "The \"$primaryKey\" index is reserved by coreDb, please delete the $primaryKey key and try again"
             );
         }
         $id = $this->increaseCounterAndGetNextId();

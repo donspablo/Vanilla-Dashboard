@@ -1,13 +1,13 @@
 <?php
 
 
-namespace CoreDB\Classes;
+namespace coreDb\Classes;
 
 
-use CoreDB\Exceptions\invalidArgumentException;
-use CoreDB\Exceptions\iOException;
-use CoreDB\query;
-use CoreDB\Store;
+use coreDb\Exceptions\invalidArgumentException;
+use coreDb\Exceptions\iOException;
+use coreDb\query;
+use coreDb\Store;
 
 
 class documentUpdater

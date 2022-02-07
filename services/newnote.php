@@ -34,17 +34,17 @@ class newnote
         $noteFile = $uname . '-' . $randHash;
 
         $new_task = $db->insert(
-            'notes.txt',
+            'notes',
             $newnote
         );
 
         $task_data = $db->insert(
-            $noteFile . '.txt',
+            $noteFile ,
             $notedata
         );
 
-        $checkFile = $_ENV['APP_DIR'] . '/data/notes/' . $noteFile . '.txt';
-        if (file_exists($checkFile)) echo '1'; else echo '0';
+        $checkFile = $_ENV['APP_DIR'] . '/data/notes/' . $noteFile ;
+        if (is_dir($checkFile)) echo '1'; else echo '0';
     }
 }
 

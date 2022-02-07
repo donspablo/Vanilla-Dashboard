@@ -1,17 +1,11 @@
 <?php
 
-define('DEFAULT_COMPARISON', '');
-define('STRING_COMPARISON', 'strcmp');
-define('INTEGER_COMPARISON', 'intcmp');
-define('NUMERIC_COMPARISON', 'numcmp');
-define('ASCENDING', 1);
-define('DESCENDING', -1);
 
 $comparison_type_for_col_type = [
-    "INT_COL" => INTEGER_COMPARISON,
-    "DATE_COL" => INTEGER_COMPARISON,
-    "STRING_COL" => STRING_COMPARISON,
-    "FLOAT_COL" => NUMERIC_COMPARISON,
+    'INT_COL' => $_ENV['INTEGER_COMPARISON'],
+    'DATE_COL' => $_ENV['INTEGER_COMPARISON'],
+    'STRING_COL' => $_ENV['STRING_COMPARISON'],
+    'FLOAT_COL' => $_ENV['NUMERIC_COMPARISON'],
 ];
 
 function get_comparison_type_for_col_type($coltype)
@@ -66,7 +60,8 @@ class txtDB
         }
 
         foreach ($table as $row) {
-            if ($whereClause === null || $whereClause->testRow($row, $schema)) {
+            print_r(whereClause);
+            if ($whereClause === null || $this->tables[$tablename]->where($whereClause)->getQuery()->fetch()) {
                 if ($count >= $limit[0]) {
                     $results[] = $row;
                 }
@@ -82,15 +77,7 @@ class txtDB
 
     public function loadTable($tablename)
     {
-        $filedata = @file($this->datadir . $tablename);
-        $table = [];
-        if (is_array($filedata)) {
-            foreach ($filedata as $line) {
-                $line = rtrim($line, "\n");
-                $table[] = explode("\t", $line);
-            }
-        }
-        $this->tables[$tablename] = $table;
+        $this->tables[$tablename] = new \coreDb\Store($tablename, $_ENV['DBDIR']);
     }
 
     public function selectAll($tablename)
@@ -121,12 +108,11 @@ class txtDB
 
     public function insertWithAutoId($tablename, $idField, $newRow)
     {
-        $lockfp = $this->getLock($tablename);
         $rows = $this->selectWhere(
             $tablename,
             null,
             1,
-            new OrderBy($idField, DESCENDING, INTEGER_COMPARISON)
+            new OrderBy($idField, $_ENV['DESCENDING'], $_ENV['INTEGER_COMPARISON'])
         );
         if ($rows) {
             $newId = $rows[0][$idField] + 1;
@@ -134,9 +120,10 @@ class txtDB
             $newId = 1;
         }
         $newRow[$idField] = $newId;
-        $this->tables[$tablename][] = $newRow;
-        $this->writeTable($tablename);
-        $this->releaseLock($lockfp);
+
+        $table = new \coreDb\Store($tablename, $_ENV['DBDIR']);
+        $table.$this->insert($newRow);
+        $this->loadTable($tablename);
 
         return $newId;
     }
@@ -153,27 +140,6 @@ class txtDB
         return $fp;
     }
 
-    public function writeTable($tablename)
-    {
-        $output = '';
-
-        foreach ($this->tables[$tablename] as $row) {
-            $keys = array_keys($row);
-            rsort($keys, SORT_NUMERIC);
-            $max = $keys[0];
-            for ($i = 0; $i <= $max; $i++) {
-                if ($i > 0) {
-                    $output .= "\t";
-                }
-                $data = (!isset($row[$i]) ? '' : $row[$i]);
-                $output .= str_replace(["\t", "\r", "\n"], [''], $data);
-            }
-            $output .= "\n";
-        }
-        $fp = @fopen($this->datadir . $tablename, 'w');
-        fwrite($fp, $output, strlen($output));
-        fclose($fp);
-    }
 
     public function releaseLock($lockfp)
     {
@@ -183,10 +149,8 @@ class txtDB
 
     public function insert($tablename, $newRow)
     {
-        $lockfp = $this->getLock($tablename);
-        $this->tables[$tablename][] = $newRow;
-        $this->writeTable($tablename);
-        $this->releaseLock($lockfp);
+        $table = new \coreDb\Store($tablename, $_ENV['DBDIR']);
+        $table->insert($newRow);
     }
 
     public function updateRowById($tablename, $idField, $updatedRow)
@@ -200,18 +164,8 @@ class txtDB
 
     public function updateSetWhere($tablename, $newFields, $whereClause)
     {
-        $schema = $this->getSchema($tablename);
-        $lockfp = $this->getLock($tablename);
-        for ($i = 0; $i < count($this->tables[$tablename]); $i++) {
-            if ($whereClause === null || $whereClause->testRow($this->tables[$tablename][$i], $schema)) {
-                foreach ($newFields as $k => $v) {
-                    $this->tables[$tablename][$i][$k] = $v;
-                }
-            }
-        }
-        $this->writeTable($tablename);
-        $this->releaseLock($lockfp);
-        $this->loadTable($tablename);
+        $table = new \coreDb\Store($tablename, $_ENV['DBDIR']);
+        $table->inser($newFields);
     }
 
     public function deleteAll($tablename)
@@ -228,8 +182,11 @@ class txtDB
                 unset($this->tables[$tablename][$i]);
             }
         }
-        $this->writeTable($tablename);
-        $this->releaseLock($lockfp);
+        $table = new \coreDb\Store($tablename, $_ENV['DBDIR']);
+        $table->createQueryBuilder()
+        ->where($whereClause)
+            ->getQuery()
+            ->delete(Query::DELETE_RETURN_COUNT);
         $this->loadTable($tablename);
     }
 
@@ -286,8 +243,9 @@ class SimpleWhereClause extends WhereClause
     public $compare_type;
 
 
-    public function __construct($field, $operator, $value, $compare_type = DEFAULT_COMPARISON)
+    public function __construct($field, $operator, $value, $compare_type = null)
     {
+        $compare_type = ($compare_type) ? $compare_type : $_ENV['DEFAULT_COMPARISON'];
         $this->field = $field;
         $this->operator = $operator;
         $this->value = $value;
@@ -301,11 +259,11 @@ class SimpleWhereClause extends WhereClause
         }
 
         $cmpfunc = $this->compare_type;
-        if ($cmpfunc == DEFAULT_COMPARISON) {
+        if ($cmpfunc == $_ENV['DEFAULT_COMPARISON']) {
             if ($rowSchema !== null) {
                 $cmpfunc = get_comparison_type_for_col_type($rowSchema[$this->field]);
             } else {
-                $cmpfunc = STRING_COMPARISON;
+                $cmpfunc = $_ENV['STRING_COMPARISON'];
             }
         }
 
@@ -341,8 +299,9 @@ class ListWhereClause extends WhereClause
     public $compareAs;
 
 
-    public function __construct($field, $list, $compare_type = DEFAULT_COMPARISON)
+    public function __construct($field, $list, $compare_type = null)
     {
+        $compare_type = ($compare_type) ? $compare_type :  $_ENV['DEFAULT_COMPARISON'];
         $this->list = $list;
         $this->field = (int)$field;
         $this->compareAs = $compare_type;
@@ -351,11 +310,11 @@ class ListWhereClause extends WhereClause
     public function testRow($tablerow, $rowSchema = null)
     {
         $func = $this->compareAs;
-        if ($func == DEFAULT_COMPARISON) {
+        if ($func == $_ENV['DEFAULT_COMPARISON']) {
             if ($rowSchema) {
                 $func = get_comparison_type_for_col_type($rowSchema[$this->field]);
             } else {
-                $func = STRING_COMPARISON;
+                $func = $_ENV['STRING_COMPARISON'];
             }
         }
 
@@ -430,8 +389,9 @@ class OrderBy
     public $compareAs;
 
 
-    public function __construct($field, $orderType, $compareAs = DEFAULT_COMPARISON)
+    public function __construct($field, $orderType, $compareAs = null)
     {
+        $compareAs = ($compareAs) ? $compareAs : $_ENV['DEFAULT_COMPARISON'];
         $this->field = $field;
         $this->orderType = $orderType;
         $this->compareAs = $compareAs;
@@ -452,7 +412,7 @@ class Orderer
         if ($rowSchema) {
             foreach ($orderBy as $index => $discard) {
                 $item = &$orderBy[$index];
-                if ($item->compareAs == DEFAULT_COMPARISON) {
+                if ($item->compareAs == $_ENV['DEFAULT_COMPARISON']) {
                     $item->compareAs = get_comparison_type_for_col_type($rowSchema[$item->field]);
                 }
             }
@@ -471,8 +431,8 @@ class Orderer
     {
         $orderBy = $this->orderByList[$index];
         $cmpfunc = $orderBy->compareAs;
-        if ($cmpfunc == DEFAULT_COMPARISON) {
-            $cmpfunc = STRING_COMPARISON;
+        if ($cmpfunc == $_ENV['DEFAULT_COMPARISON']) {
+            $cmpfunc = $_ENV['STRING_COMPARISON'];
         }
         $cmp = $orderBy->orderType * $cmpfunc($row1[$orderBy->field], $row2[$orderBy->field]);
         if ($cmp == 0) {

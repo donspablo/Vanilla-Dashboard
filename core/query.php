@@ -1,11 +1,11 @@
 <?php
 
-namespace CoreDB;
+namespace coreDb;
 
-use CoreDB\Classes\cacheHandler;
-use CoreDB\Classes\documentFinder;
-use CoreDB\Classes\documentUpdater;
-use CoreDB\Exceptions\invalidArgumentException;
+use coreDb\Classes\cacheHandler;
+use coreDb\Classes\documentFinder;
+use coreDb\Classes\documentUpdater;
+use coreDb\Exceptions\invalidArgumentException;
 
 
 class query

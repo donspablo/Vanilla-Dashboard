@@ -10,7 +10,7 @@ class signin
     public function __construct()
     {
         $db = new \txtDB();
-        $db->datadir = $_ENV['APP_DIR'] . '/data/';
+        $db->datadir = $_ENV['DBDIR'];
 
         $mode = $_POST['requestType'];
         switch ($mode) {
@@ -37,10 +37,12 @@ class signin
 
     function sign($db, $username, $password)
     {
-        $compClause = new \CompositeWhereClause();
-        $compClause->add(new \SimpleWhereClause($_ENV['USERNAME'], '=', htmlspecialchars($username), $_ENV['STRING_COMPARISON']));
-        $compClause->add(new \SimpleWhereClause($_ENV['PASSWORD'], '=', functions::encodeIt($password), $_ENV['STRING_COMPARISON']));
-        $userdata = $db->selectWhere('users.txt', $compClause, 1);
+
+        $table = new \coreDb\Store('USERS', $_ENV['DBDIR']);
+
+        $userdata = $table->findOneBy([ $_ENV['USERNAME'], '=', htmlspecialchars($username)]);
+
+        //$userdata = $db->selectWhere('USERS', $compClause, 1);
 
         foreach ($userdata as $item => $row) {
             $_SESSION['st']['userId'] = $row[0];
@@ -73,7 +75,7 @@ class signin
         $newuser[$_ENV['DATE_CREATED']] = $dateCreated;
 
         $new_user = $db->insert(
-            'users.txt',
+            'USERS',
             $newuser
         );
 
@@ -86,7 +88,7 @@ class signin
 
 
         $new_user = $db->insert(
-            $userFile . '.txt',
+            $userFile ,
             $userinfo
         );
 
@@ -112,9 +114,9 @@ class signin
         mail($usremail, $subject, $message, $headers);
 
 
-        $checkFile = $_ENV['APP_DIR'] . '/data/' . $userFile . '.txt';
+        $checkFile = $_ENV['APP_DIR'] . '/data/' . $userFile ;
 
-        if (file_exists($checkFile)) {
+        if (is_dir($checkFile)) {
             echo '1';
         } else {
             echo '0';
@@ -127,7 +129,7 @@ class signin
         $useremail = htmlspecialchars($useremail);
 
         $userdata = $db->selectWhere(
-            'users.txt',
+            'USERS',
             new \SimpleWhereClause($_ENV['USER_EMAIL'], '=', $useremail)
         );
 
@@ -142,7 +144,7 @@ class signin
                 $uname = $row[1];
             }
 
-            $userfile = $db->selectAll($uname . '-' . $uid . '.txt');
+            $userfile = $db->selectAll($uname . '-' . $uid );
 
             $randomHash = uniqid(rand());
             $randHash = substr($randomHash, 0, 8);
@@ -150,7 +152,7 @@ class signin
             $newpass = encodeIt($randHash);
 
             $db->updateSetWhere(
-                'users.txt', [
+                'USERS', [
                 $_ENV['PASSWORD'] => $newpass,
             ],
                 new \SimpleWhereClause(
@@ -189,7 +191,7 @@ class signin
         $usrname = htmlspecialchars(functions::alphaNum($username));
 
         $userdata = $db->selectWhere(
-            'users.txt',
+            'USERS',
             new \SimpleWhereClause($_ENV['USERNAME'], '=', $usrname, $_ENV['DEFAULT_COMPARISON'])
         );
 
@@ -203,7 +205,7 @@ class signin
         $useremail = htmlspecialchars($useremail);
 
         $userdata = $db->selectWhere(
-            'users.txt',
+            'USERS',
             new \SimpleWhereClause($_ENV['USER_EMAIL'], '=', $useremail, $_ENV['DEFAULT_COMPARISON'])
         );
 

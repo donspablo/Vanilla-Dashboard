@@ -24,7 +24,7 @@ class viewnote
         $now = date('Y-m-d H:i:s');
 
         $db->updateSetWhere(
-            'notes.txt', [
+            'notes', [
             NOTE_TITLE => $noteTitle,
             UPDATE_DATE => $now,
         ],
@@ -34,7 +34,7 @@ class viewnote
         );
 
         $db->updateSetWhere(
-            $noteId . '.txt', [
+            $noteId , [
             NOTE_TEXT => $notesText,
             UPDATE_DATE => $now,
         ],
