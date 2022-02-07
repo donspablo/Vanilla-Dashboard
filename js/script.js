@@ -1,4 +1,6 @@
 const _window = window;
+const _windowinnerWidth = _window.innerWidth;
+const _windowinnerHeight = _window.innerHeight;
 (function(){var d=document.getElementsByTagName("script")[0],f=d.parentNode,g=/ed|co/,e=function(b,c){var a=document.createElement("script");a.onload=a.onreadystatechange=function(){if(!this.readyState||g.test(this.readyState)){a.onload=a.onreadystatechange=null;c&&c(a);a=null}};a.async=true;a.src=b;f.insertBefore(a,d)};_window.sssl=function(b,c){if(typeof b=="string")e(b,c);else{var a=b.shift();e(a,function(){if(b.length)_window.sssl(b,c);else c&&c()})}}})();
 
 
@@ -70,8 +72,8 @@ function startGame() {
     const heroHeight = 30; // 40
 
     const canvas = document.getElementById("game");
-    canvas.width = _window.innerWidth; // Make the Canvas full screen
-    canvas.height = _window.innerHeight;
+    canvas.width = _windowinnerWidth; // Make the Canvas full screen
+    canvas.height = _windowinnerHeight;
 
     const ctx = canvas.getContext("2d");
 
@@ -165,14 +167,6 @@ function startGame() {
 
     resetGame();
 
-// If space was pressed restart the game
-    _window.addEventListener("keydown", function (event) {
-        if (event.key == " ") {
-            event.preventDefault();
-            resetGame();
-            return;
-        }
-    });
 
     _window.addEventListener("mousedown", function (event) {
         if (phase == "waiting") {
@@ -190,8 +184,8 @@ function startGame() {
     });
 
     _window.addEventListener("resize", function (event) {
-        canvas.width = _window.innerWidth;
-        canvas.height = _window.innerHeight;
+        canvas.width = _windowinnerWidth;
+        canvas.height = _windowinnerHeight;
         draw();
     });
 
@@ -1473,78 +1467,83 @@ sssl(["https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js", "
     });
 
 
-    function app() {
-        return {
-          showSettingsPage: false,
-          openModal: false,
-          username: '',
-          bannerImage: '',
-          colors: [{
-              label: '#3182ce',
-              value: 'blue'
-            },
-            {
-              label: '#38a169',
-              value: 'green'
-            },
-            {
-              label: '#805ad5',
-              value: 'purple'
-            },
-            {
-              label: '#e53e3e',
-              value: 'red'
-            },
-            {
-              label: '#dd6b20',
-              value: 'orange'
-            },
-            {
-              label: '#5a67d8',
-              value: 'indigo'
-            },
-            {
-              label: '#319795',
-              value: 'teal'
-            },
-            {
-              label: '#718096',
-              value: 'gray'
-            },
-            {
-              label: '#d69e2e',
-              value: 'yellow'
-            }
-          ],
-          colorSelected: {
+
+}));
+
+
+
+function app() {
+    return {
+        showSettingsPage: false,
+        openModal: false,
+        username: '',
+        bannerImage: '',
+        colors: [{
             label: '#3182ce',
             value: 'blue'
-          },
-          dateDisplay: 'toDateString',
-          boards: [
+        },
+            {
+                label: '#38a169',
+                value: 'green'
+            },
+            {
+                label: '#805ad5',
+                value: 'purple'
+            },
+            {
+                label: '#e53e3e',
+                value: 'red'
+            },
+            {
+                label: '#dd6b20',
+                value: 'orange'
+            },
+            {
+                label: '#5a67d8',
+                value: 'indigo'
+            },
+            {
+                label: '#319795',
+                value: 'teal'
+            },
+            {
+                label: '#718096',
+                value: 'gray'
+            },
+            {
+                label: '#d69e2e',
+                value: 'yellow'
+            }
+        ],
+        colorSelected: {
+            label: '#3182ce',
+            value: 'blue'
+        },
+        dateDisplay: 'toDateString',
+        boards: [
             'Todo',
-            'In Progress',
+            'Progress',
             'Review',
             'Done'
-          ],
-          task: {
+        ],
+        task: {
             name: '',
             boardName: '',
             date: new Date()
-          },
-          editTask: {},
-          tasks: [],
-          formatDateDisplay(date) {
+        },
+        editTask: {},
+        tasks: [],
+        formatDateDisplay(date) {
             if (this.dateDisplay === 'toDateString') return new Date(date).toDateString();
             if (this.dateDisplay === 'toLocaleDateString') return new Date(date).toLocaleDateString('en-GB');
             return new Date().toLocaleDateString('en-GB');
-          },
-          showModal(board) {
+        },
+        showModal(board) {
             this.task.boardName = board;
             this.openModal = true;
             setTimeout(() => this.$refs.taskName.focus(), 200);
-          },
-          saveEditTask(task) {
+        },
+        saveEditTask(task) {
             if (task.name == '') return;
             let taskIndex = this.tasks.findIndex(t => t.uuid === task.uuid);
             this.tasks[taskIndex].name = task.name;
@@ -1559,43 +1558,43 @@ sssl(["https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js", "
             // Save back to localStorage
             localStorage.setItem('TG-tasks', JSON.stringify(existing));
             this.dispatchCustomEvents('flash', 'Task detail updated');
-          },
-          getTasks() {
+        },
+        getTasks() {
             // Get Default Settings
             const themeFromLocalStorage = JSON.parse(localStorage.getItem('TG-theme'));
             this.dateDisplay = localStorage.getItem('TG-dateDisplay') || 'toLocaleDateString';
             this.username = localStorage.getItem('TG-username') || '';
             this.bannerImage = localStorage.getItem('TG-bannerImage') || '';
             this.colorSelected = themeFromLocalStorage || {
-              label: '#3182ce',
-              value: 'blue'
+                label: '#3182ce',
+                value: 'blue'
             };
             if (localStorage.getItem('TG-tasks')) {
-              const tasksFromLocalStorage = JSON.parse(localStorage.getItem('TG-tasks'));
-              this.tasks = tasksFromLocalStorage.map(t => {
-                return {
-                  id: t.id,
-                  uuid: t.uuid,
-                  name: t.name,
-                  status: t.status,
-                  boardName: t.boardName,
-                  date: t.date,
-                  edit: false
-                }
-              });
+                const tasksFromLocalStorage = JSON.parse(localStorage.getItem('TG-tasks'));
+                this.tasks = tasksFromLocalStorage.map(t => {
+                    return {
+                        id: t.id,
+                        uuid: t.uuid,
+                        name: t.name,
+                        status: t.status,
+                        boardName: t.boardName,
+                        date: t.date,
+                        edit: false
+                    }
+                });
             } else {
-              this.tasks = [];
+                this.tasks = [];
             }
-          },
-          addTask() {
+        },
+        addTask() {
             if (this.task.name == '') return;
             // data to save
             const taskData = {
-              uuid: this.generateUUID(),
-              name: this.task.name,
-              status: 'pending',
-              boardName: this.task.boardName,
-              date: new Date()
+                uuid: this.generateUUID(),
+                name: this.task.name,
+                status: 'pending',
+                boardName: this.task.boardName,
+                date: new Date()
             };
             // Save to localStorage
             this.saveDataToLocalStorage(taskData, 'TG-tasks');
@@ -1608,8 +1607,8 @@ sssl(["https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js", "
             this.task.boardName = '';
             // close the modal
             this.openModal = false;
-          },
-          saveSettings() {
+        },
+        saveSettings() {
             // data to save
             const theme = JSON.stringify(this.colorSelected);
             // Save to localStorage
@@ -1621,22 +1620,22 @@ sssl(["https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js", "
             this.dispatchCustomEvents('flash', 'Settings updated');
             // Back to Main Page
             this.showSettingsPage = false;
-          },
-          onDragStart(event, uuid) {
+        },
+        onDragStart(event, uuid) {
             event.dataTransfer.setData('text/plain', uuid);
             event.target.classList.add('opacity-5');
-          },
-          onDragOver(event) {
+        },
+        onDragOver(event) {
             event.preventDefault();
             return false;
-          },
-          onDragEnter(event) {
+        },
+        onDragEnter(event) {
             event.target.classList.add('bg-gray-200');
-          },
-          onDragLeave(event) {
+        },
+        onDragLeave(event) {
             event.target.classList.remove('bg-gray-200');
-          },
-          onDrop(event, boardName) {
+        },
+        onDrop(event, boardName) {
             event.stopPropagation(); // Stops some browsers from redirecting.
             event.preventDefault();
             event.target.classList.remove('bg-gray-200');
@@ -1659,8 +1658,8 @@ sssl(["https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js", "
             // Show flash message
             this.dispatchCustomEvents('flash', 'Task moved to ' + boardName);
             event.dataTransfer.clearData();
-          },
-          saveDataToLocalStorage(data, keyName) {
+        },
+        saveDataToLocalStorage(data, keyName) {
             var a = [];
             // Parse the serialized data back into an aray of objects
             a = JSON.parse(localStorage.getItem(keyName)) || [];
@@ -1668,41 +1667,38 @@ sssl(["https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js", "
             a.push(data);
             // Re-serialize the array back into a string and store it in localStorage
             localStorage.setItem(keyName, JSON.stringify(a));
-          },
-          generateUUID() {
+        },
+        generateUUID() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-              var r = Math.random() * 16 | 0,
-                v = c == 'x' ? r : (r & 0x3 | 0x8);
-              return v.toString(16);
+                var r = Math.random() * 16 | 0,
+                    v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
             });
-          },
-          dispatchCustomEvents(eventName, message) {
+        },
+        dispatchCustomEvents(eventName, message) {
             let customEvent = new CustomEvent(eventName, {
-              detail: {
-                message: message
-              }
+                detail: {
+                    message: message
+                }
             });
             _window.dispatchEvent(customEvent);
-          },
-          greetText() {
+        },
+        greetText() {
             var d = new Date();
             var time = d.getHours();
             // From: https://1loc.dev/ (Uppercase the first character of each word in a string)
             const uppercaseWords = str => str.split(' ').map(w => `${w.charAt(0).toUpperCase()}${w.slice(1)}`).join(' ');
             let name = localStorage.getItem('TG-username') || '';
             if (time < 12) {
-              return "Good morning, " + uppercaseWords(name);
+                return "Good morning, " + uppercaseWords(name);
             } else if (time < 17) {
-              return "Good afternoon, " + uppercaseWords(name);
+                return "Good afternoon, " + uppercaseWords(name);
             } else {
-              return "Good evening, " + uppercaseWords(name);
+                return "Good evening, " + uppercaseWords(name);
             }
-          },
-        }
-      }
-
-}));
-
+        },
+    }
+}
 
 const hueBase = 0, hueRange = 360, segmentCount = 200, bubbleCount = 500, segmentLengthBase = 1,
     fadeIn = (e, t) => e / t, fadeOut = (e, t) => (t - e) / t, fadeInOut = (e, t) => {

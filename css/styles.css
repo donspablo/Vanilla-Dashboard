@@ -1264,7 +1264,7 @@ html:hover body > canvas {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    z-index: 3
+    z-index: 3;
     width:100vw;
 }
 
