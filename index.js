@@ -1,50 +1,31 @@
-var options = {};
+// ===================================================
+// Total.js start script
+// https://www.totaljs.com
+// ===================================================
+const open = require('open');
+const options = {};
 
-// ====================================
-// COMMON (OPTIONAL)
-// ====================================
+// options.ip = '127.0.0.1';
+// options.port = parseInt(process.argv[2]);
+// options.unixsocket = require('path').join(require('os').tmpdir(), 'app_name');
+// options.unixsocket777 = true;
+// options.config = { name: 'Total.js' };
+// options.sleep = 3000;
+// options.inspector = 9229;
+// options.watch = ['private'];
+// options.livereload = 'https://yourhostname';
 
-// options.url = '/$dashboard/';
+// Enables cluster:
+options.cluster = 'auto';
+options.cluster_limit = 10; // max 10. threads (works only with "auto" scaling)
 
-// A maximum length of request:
-// options.limit = 50;
+// Enables threads:
+options.cluster = 'auto';
+options.cluster_limit = 10; // max 10. threads (works only with "auto" scaling)
+options.timeout = 5000;
+options.threads = '/api/';
+options.logs = 'isolated';
 
-// Predefined set of components (default value):
-// options.templates = 'https://raw.githubusercontent.com/totaljs/dashboardcomponents/master/templates.json';
+open('./index.html')
 
-// ====================================
-// Security (OPTIONAL)
-// ====================================
-
-// +v6.0.0
-// Default light theme
-// options.dark = false;
-
-// +v6.0.0
-// Enables backing up of Dashboard designer
-// options.backup = true;
-// default: false
-
-// +v6.0.0
-// Enables link to Flow (if exists) in context menu
-// options.flow = true;
-// default: true
-
-// +v6.0.0
-// Enables link to Flowboard (if exists) in context menu
-// options.flowboard = true;
-// default: true
-
-// HTTP Basic auth:
-// options.auth = ['admin:admin', 'name:password'];
-
-// Standard "authorize" flag
-// options.auth = true;
-
-// IP restrictions:
-// options.restrictions = ['127.0.0.1', '138.201', '172.31.33'];
-
-// options.token = ['OUR_COMPANY_TOKEN'];
-// you can open dashboard using : /$dashboard/?token=OUR_COMPANY_TOKEN
-
-INSTALL('package', 'https://cdn.totaljs.com/dashboard.package', options);
+require('total4/release')(options);
