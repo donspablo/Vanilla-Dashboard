@@ -79,6 +79,11 @@ html.login #intro, html.login .skype-button {
     font-size:2em !important;
 }
 
+
+.slider h2 {
+    color: #00c4ff !important;
+}
+
 .bg-cover.bg-center.bg-no-repeat.bg-blue-900{background:none !important;}
 
 .full-height {
@@ -474,7 +479,7 @@ body {
     pointer-events: none
 }
 
-#tab-deno, #tab-next, #tab-typescript {
+#tab-graphql,  #tab-next {
     background: rgba(0, 0, 0, .5);
     backdrop-filter: blur(10px)
 }
@@ -985,7 +990,7 @@ a {
 }
 
 #tab-graphql {
-    height: 150vh
+    height: 100vh
 }
 
 #wrapper, .starwars {
