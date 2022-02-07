@@ -19,6 +19,15 @@ services baked in, as well as a variety of "Easter Eggs," all wrapped up in a Va
 - [Contributing to the Project](#Contributing-to-the-Project)
 - [Licensing and Ownership](#Licensing-and-Ownership)
 ![image](https://user-images.githubusercontent.com/6468571/152601481-d3792aa4-7f82-4bc5-9b8d-1ad77f66faf5.png)
+
+# Screenshots
+
+<p align="center">
+
+![image](img/screenshot.jpg)
+
+</p>
+
 ## Road Map
 
 - [x] Foundation
@@ -70,6 +79,22 @@ restrictions imposed by inadequate software for development. You may be able to 
 concentrate your efforts on the most important tasks.
 
 ![image](https://user-images.githubusercontent.com/6468571/152177774-25482b2a-f8cd-4f19-a221-97dc29212a2d.png)
+
+Clone this repo
+
+```
+
+git clone https://github.com/donPabloNow/vanilla-dashboard
+
+```
+
+Clone the "sample.env" to ".env" and update with the correct details.
+
+```
+cp ./sample.env ./.env
+```
+
+Host the files on a PHP server
 
 ```
 # Start it up
