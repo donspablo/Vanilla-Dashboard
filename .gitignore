@@ -1,4 +1,5 @@
 *
+!package.json
 .src/
 !bundles/
 !.gitignore
@@ -24,6 +25,8 @@ css/*
 data/*
 !data/.htaccess
 !img/*
+!img/login.webp
+!img/wars.svg
 includes/*
 !includes/.htaccess
 !includes/aaawhereclause.php
@@ -41,3 +44,5 @@ includes/*
 !js/*
 !services/*
 !sample.env
+!packages/dashboard.package
+!packages/flow.package
