@@ -118,7 +118,7 @@
                 class="m">T</span> <span class="m">H</span> <span class="m">I</span> <span class="m">N</span> <span
                 class="m">G</span> </h3>
         <div class="nav-container"><a class="nav-tab" href="#reg-log">DASHBOARD</a> <a class="nav-tab" href="#tab-graphql">TASKS</a>
-            <a class="nav-tab" href="#tab-next">CHAT</a> <a class="nav-tab" href="#tab-typescript">TASKS</a> <a
+            <a class="nav-tab" href="#tab-next">CHAT</a> <a class="nav-tab" href="#tab-typescript">CALENDAR</a> <a
                     class="nav-tab" href="#tab-deno">FUN</a> <span class="nav-tab-slider"></span></div>
     </section>
     <main class="main">
@@ -440,9 +440,35 @@
 
         </section>
         <section class="slider" id="tab-next"><h1>CHAT</h1>
-            <h2>Stay connected and in the loop, Live Chat coming soon!</h2></section>
-        <section class="slider" id="tab-typescript"><h1>TASKS</h1>
-            <h2>Got things todo? Live Tasks coming soon!</h2></section>
+        
+
+  
+<main id="stream-chat">
+
+  <div class="overflow">
+      <div id="messages">
+        <div class="odd message">
+          <span class="timestamp">6:00</span>
+          <span class="name" style="color: rgb(80, 30, 252)">fggg:</span>
+          <span class="text">fdgdg</span>
+      </div><div class="even message">
+          <span class="timestamp">6:00</span>
+          <span class="name" style="color: rgb(215, 65, 83)">fgfg:</span>
+          <span class="text">fgfdg</span>
+      </div></div>
+  </div>
+
+
+  <div id="input-area">
+      <textarea id="input" type="text"></textarea>
+      <button id="send">Chat</button>
+  </div>
+
+
+</main>    
+        </section>
+        <section class="slider" id="tab-typescript">
+          <div id="scheduler"></div></section>
         <section class="slider" id="tab-deno">
           <div class="game">
             <div id="score"></div>
@@ -458,30 +484,6 @@
 
 
 
-
-  
-<main id="stream-chat">
-
-    <div class="overflow">
-        <div id="messages"><div class="odd message">
-            <span class="timestamp">6:00</span>
-            <span class="name" style="color: rgb(80, 30, 252)">fggg:</span>
-            <span class="text">fdgdg</span>
-        </div><div class="even message">
-            <span class="timestamp">6:00</span>
-            <span class="name" style="color: rgb(215, 65, 83)">fgfg:</span>
-            <span class="text">fgfdg</span>
-        </div></div>
-    </div>
-
-
-    <div id="input-area">
-        <textarea id="input" type="text"></textarea>
-        <button id="send">Chat</button>
-    </div>
-
-
-</main>
 <article class="starwars">
   <audio preload="auto">
       <source src="https://s.cdpn.io/1202/Star_Wars_original_opening_crawl_1977.ogg" type="audio/ogg"/>

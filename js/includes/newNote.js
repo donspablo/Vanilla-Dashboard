@@ -32,4 +32,5 @@ class newNote {
         });
     }
 }
+
 //new newNote();

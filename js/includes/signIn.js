@@ -85,6 +85,7 @@ class signIn {
         });
 
         $('#signin-btn').click(function (e) {
+
             e.preventDefault();
 
             var username = $("#username").val();
@@ -111,6 +112,10 @@ class signIn {
                 $("#password").focus();
                 return false;
             }
+
+            
+            Login();
+
 
             // Start the AJAX
             var  post_data = {
@@ -199,6 +204,10 @@ class signIn {
                     $("#newpass").focus();
                     return false;
                 }
+
+                
+            Login();
+
 
                 // Start the AJAX
                 var post_data = {
