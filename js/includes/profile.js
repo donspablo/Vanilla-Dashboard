@@ -1,12 +1,14 @@
-var validEmailReq = 'A valid Email Address is required.';
-var passNoMatch = 'New Account Passwords do not match';
-var accUpdated = 'Cheer! Your Account Profile has been updated.';
-var errorText = 'Whoops, looks like an unexpected error was encountered, and your Account Profile could not be updated at this time.';
 
 
 class profile {
     constructor() {
         e.preventDefault();
+
+        var validEmailReq = 'A valid Email Address is required.';
+        var passNoMatch = 'New Account Passwords do not match';
+        var accUpdated = 'Cheer! Your Account Profile has been updated.';
+        var errorText = 'Whoops, looks like an unexpected error was encountered, and your Account Profile could not be updated at this time.';
+
 
         var userEmail = $("#userEmail").val();
         var password1 = $("#password1").val();

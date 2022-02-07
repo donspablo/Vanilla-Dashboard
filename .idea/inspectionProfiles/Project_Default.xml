@@ -1,0 +1,73 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="CssUnknownProperty" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myCustomPropertiesEnabled" value="true" />
+      <option name="myIgnoreVendorSpecificProperties" value="false" />
+      <option name="myCustomPropertiesList">
+        <value>
+          <list size="1">
+            <item index="0" class="java.lang.String" itemvalue="zindex" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="32">
+            <item index="0" class="java.lang.String" itemvalue="x-data" />
+            <item index="1" class="java.lang.String" itemvalue="x-on:flash.window" />
+            <item index="2" class="java.lang.String" itemvalue="x-if" />
+            <item index="3" class="java.lang.String" itemvalue="x-transition:enter" />
+            <item index="4" class="java.lang.String" itemvalue="x-transition:enter-end" />
+            <item index="5" class="java.lang.String" itemvalue="x-transition:enter-start" />
+            <item index="6" class="java.lang.String" itemvalue="x-transition:leave" />
+            <item index="7" class="java.lang.String" itemvalue="x-transition:leave-end" />
+            <item index="8" class="java.lang.String" itemvalue="x-transition:leave-start" />
+            <item index="9" class="java.lang.String" itemvalue="x-text" />
+            <item index="10" class="java.lang.String" itemvalue="x-init" />
+            <item index="11" class="java.lang.String" itemvalue="x-show" />
+            <item index="12" class="java.lang.String" itemvalue="x-model" />
+            <item index="13" class="java.lang.String" itemvalue="@keydown.enter" />
+            <item index="14" class="java.lang.String" itemvalue="x-show.transition" />
+            <item index="15" class="java.lang.String" itemvalue="@click.prevent" />
+            <item index="16" class="java.lang.String" itemvalue="x-show.immediate" />
+            <item index="17" class="java.lang.String" itemvalue=":key" />
+            <item index="18" class="java.lang.String" itemvalue="x-for" />
+            <item index="19" class="java.lang.String" itemvalue="@click" />
+            <item index="20" class="java.lang.String" itemvalue=":style" />
+            <item index="21" class="java.lang.String" itemvalue=":class" />
+            <item index="22" class="java.lang.String" itemvalue="@dragenter" />
+            <item index="23" class="java.lang.String" itemvalue="@dragleave" />
+            <item index="24" class="java.lang.String" itemvalue="@dragover" />
+            <item index="25" class="java.lang.String" itemvalue="@dblclick" />
+            <item index="26" class="java.lang.String" itemvalue="@drop" />
+            <item index="27" class="java.lang.String" itemvalue="@dragstart" />
+            <item index="28" class="java.lang.String" itemvalue="x-on:click" />
+            <item index="29" class="java.lang.String" itemvalue="x-show.transition.opacity" />
+            <item index="30" class="java.lang.String" itemvalue=":x-ref" />
+            <item index="31" class="java.lang.String" itemvalue="x-ref" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="7">
+            <item index="0" class="java.lang.String" itemvalue="nobr" />
+            <item index="1" class="java.lang.String" itemvalue="noembed" />
+            <item index="2" class="java.lang.String" itemvalue="comment" />
+            <item index="3" class="java.lang.String" itemvalue="noscript" />
+            <item index="4" class="java.lang.String" itemvalue="embed" />
+            <item index="5" class="java.lang.String" itemvalue="script" />
+            <item index="6" class="java.lang.String" itemvalue="div" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
+  </profile>
+</component>

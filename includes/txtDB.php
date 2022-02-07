@@ -7,10 +7,10 @@ use vandash\includes\txtDB_utils;
 
 
 $comparison_type_for_col_type = [
-    'INT_COL'    => $_ENV['INTEGER_COMPARISON'],
-    'DATE_COL'   => $_ENV['INTEGER_COMPARISON'],
+    'INT_COL' => $_ENV['INTEGER_COMPARISON'],
+    'DATE_COL' => $_ENV['INTEGER_COMPARISON'],
     'STRING_COL' => $_ENV['STRING_COMPARISON'],
-    'FLOAT_COL'  => $_ENV['NUMERIC_COMPARISON'],
+    'FLOAT_COL' => $_ENV['NUMERIC_COMPARISON'],
 ];
 
 function get_comparison_type_for_col_type($coltype)

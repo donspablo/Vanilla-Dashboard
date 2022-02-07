@@ -1,13 +1,14 @@
-var taskReqText = 'The New Task will need a Title.';
-var taskDateAssigned = 'The Task needs the Date Assigned.';
-var taskDateDue = 'The Task needs the Date Due.';
-var taskDescText = 'The Task Description is required.';
-var newTaskSaved = 'The New Task has been successfully created.';
-var errorText = 'Looks like an unexpected error was encountered, and the New Task could not be created at this time.';
 
 
 class newTask {
     constructor() {
+        var taskReqText = 'The New Task will need a Title.';
+        var taskDateAssigned = 'The Task needs the Date Assigned.';
+        var taskDateDue = 'The Task needs the Date Due.';
+        var taskDescText = 'The Task Description is required.';
+        var newTaskSaved = 'The New Task has been successfully created.';
+        var errorText = 'Looks like an unexpected error was encountered, and the New Task could not be created at this time.';
+
         $('#newTask').click(function (e) {
             e.preventDefault();
 

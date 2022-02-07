@@ -1,4 +1,3 @@
-
 ![image](https://user-images.githubusercontent.com/6468571/152601370-fd51c475-8f32-46a4-83d2-44f77cecd376.png)
 
 # The Vanilla Dashboard Project
@@ -9,7 +8,7 @@ Vanilla Dashboard is free and open source software.
 The Vanilla Dashboard is a free and open-source project, and comes with Vanilla, "Live Chat," and "Who Is Online"
 services baked in, as well as a variety of "Easter Eggs," all wrapped up in a Vanilla CSS UI.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/donPabloNow/Vanilla-Dashboard) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy/?template=https://gitpod.io/#https://github.com/donPabloNow/Vanilla-Dashboard) [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/donPabloNow/Vanilla-Dashboard) [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/donPabloNow/Vanilla-Dashboard) 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/donPabloNow/Vanilla-Dashboard) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://www.heroku.com/deploy/?template=https://gitpod.io/#https://github.com/donPabloNow/Vanilla-Dashboard) [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/donPabloNow/Vanilla-Dashboard) [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/donPabloNow/Vanilla-Dashboard)
 
 ## Content Index
 
@@ -18,7 +17,7 @@ services baked in, as well as a variety of "Easter Eggs," all wrapped up in a Va
 - [Usage & How to Guide](#Usage-&-How-to-Guide)
 - [Contributing to the Project](#Contributing-to-the-Project)
 - [Licensing and Ownership](#Licensing-and-Ownership)
-![image](https://user-images.githubusercontent.com/6468571/152601481-d3792aa4-7f82-4bc5-9b8d-1ad77f66faf5.png)
+  ![image](https://user-images.githubusercontent.com/6468571/152601481-d3792aa4-7f82-4bc5-9b8d-1ad77f66faf5.png)
 
 # Screenshots
 

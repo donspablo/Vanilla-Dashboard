@@ -1,12 +1,13 @@
-var deleteNoteTitle = 'Delete Note Confirmation';
-var deleteNoteQuip = 'Are you sure you want to permentently DELETE this Note?';
-var delYesOption = 'Yes, Delete It';
-var cancelDelOption = 'Cancel';
-var deleteError = 'An Error was encountered, and the Note could not be deleted at this time.';
 
 
 class notes {
     constructor() {
+        var deleteNoteTitle = 'Delete Note Confirmation';
+        var deleteNoteQuip = 'Are you sure you want to permentently DELETE this Note?';
+        var delYesOption = 'Yes, Delete It';
+        var cancelDelOption = 'Cancel';
+        var deleteError = 'An Error was encountered, and the Note could not be deleted at this time.';
+
         $('#notes').dataTable({
             "order": [1, 'desc'],
             "pageLength": 25

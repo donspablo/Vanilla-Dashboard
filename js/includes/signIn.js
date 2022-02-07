@@ -1,25 +1,26 @@
-var dupUsername1 = 'Whoops, Looks like there is all ready an account registered with the Username';
-var dupUsername2 = 'Please select something different.';
-var usernameQuip = 'Usernames can contain upper and lower case letters, numbers and dashes only. Duplicate usernames are not allowed.';
-var dupEmail = 'Whoops, Looks like there is all ready an account registered with that Email Address.';
-var usernameReq = 'Your Account Username is required.';
-var passReq = 'Your Account Password is required.';
-var invalidSignin = 'Whoops, Invalid Sign In. Please check your Username and/or Password and try again.';
-var signinSuccess = 'Cheer! Sign In Successfull';
-var signinError = 'Uh oh, Looks like an unexpected error was encountered, and you were not Signed In.';
-var newusernameReq = 'Your New Account will need a Username.';
-var validEmailReq = 'Your New Account will need a valid Email Address.';
-var newpassReq = 'Your New Account will need a Password.';
-var newAccCreated = 'Your New Account has been successfully created.';
-var newAccError = 'Looks like an unexpected error was encountered, and your New Account was unable to be created.';
-var accountEmailReq = 'Your Account Email Address is required.';
-var passResetSuccess = 'Your Account Password has been reset, and an email has been sent with the new password.';
-var noAccError = 'Hmmm, An Account with that Email Address could not be found.';
-var resetPassError = 'Looks like an unexpected error was encountered, and your Account Password could not be reset.';
 
 class signIn {
 
     constructor() {
+        var dupUsername1 = 'Whoops, Looks like there is all ready an account registered with the Username';
+        var dupUsername2 = 'Please select something different.';
+        var usernameQuip = 'Usernames can contain upper and lower case letters, numbers and dashes only. Duplicate usernames are not allowed.';
+        var dupEmail = 'Whoops, Looks like there is all ready an account registered with that Email Address.';
+        var usernameReq = 'Your Account Username is required.';
+        var passReq = 'Your Account Password is required.';
+        var invalidSignin = 'Whoops, Invalid Sign In. Please check your Username and/or Password and try again.';
+        var signinSuccess = 'Cheer! Sign In Successfull';
+        var signinError = 'Uh oh, Looks like an unexpected error was encountered, and you were not Signed In.';
+        var newusernameReq = 'Your New Account will need a Username.';
+        var validEmailReq = 'Your New Account will need a valid Email Address.';
+        var newpassReq = 'Your New Account will need a Password.';
+        var newAccCreated = 'Your New Account has been successfully created.';
+        var newAccError = 'Looks like an unexpected error was encountered, and your New Account was unable to be created.';
+        var accountEmailReq = 'Your Account Email Address is required.';
+        var passResetSuccess = 'Your Account Password has been reset, and an email has been sent with the new password.';
+        var noAccError = 'Hmmm, An Account with that Email Address could not be found.';
+        var resetPassError = 'Looks like an unexpected error was encountered, and your Account Password could not be reset.';
+
 
         $('#newusername').blur(function () {
             var username = $("#newusername").val();
@@ -113,12 +114,12 @@ class signIn {
                 return false;
             }
 
-            
+
             Login();
 
 
             // Start the AJAX
-            var  post_data = {
+            var post_data = {
                 'username': username,
                 'password': password,
                 'requestType': 'signin'
@@ -145,13 +146,14 @@ class signIn {
                                 text: signinSuccess,
                                 icon: '<i class="fa fa-check"></i>',
                                 timeout: 10000
-                            }); fields
+                            });
+                            fields
 
                             // Reset the form
                             $("#username, #password").val('');
 
                             // Redirect after 1.5 Seconds
-                            window.setTimeout($('html').addClass('login'),5000);
+                            window.setTimeout($('html').addClass('login'), 5000);
                         } else {
                             // Unknown error
                             Notifi.addNotification({
@@ -172,72 +174,72 @@ class signIn {
             var username = $("#newusername").val();
             var useremail = $("#newemail").val();
             var password = $("#newpass").val();
-                if (username == '') {
-                    Notifi.addNotification({
-                        color: 'danger',
-                        text: newusernameReq,
-                        icon: '<i class="fa fa-warning"></i>',
-                        timeout: 10000
-                    });
-                    $("#newusername").focus();
-                    return false;
-                }
+            if (username == '') {
+                Notifi.addNotification({
+                    color: 'danger',
+                    text: newusernameReq,
+                    icon: '<i class="fa fa-warning"></i>',
+                    timeout: 10000
+                });
+                $("#newusername").focus();
+                return false;
+            }
 
-                if (useremail == '') {
-                    Notifi.addNotification({
-                        color: 'danger',
-                        text: validEmailReq,
-                        icon: '<i class="fa fa-warning"></i>',
-                        timeout: 10000
-                    });
-                    $("#newemail").focus();
-                    return false;
-                }
+            if (useremail == '') {
+                Notifi.addNotification({
+                    color: 'danger',
+                    text: validEmailReq,
+                    icon: '<i class="fa fa-warning"></i>',
+                    timeout: 10000
+                });
+                $("#newemail").focus();
+                return false;
+            }
 
-                if (password == '') {
-                    Notifi.addNotification({
-                        color: 'danger',
-                        text: newpassReq,
-                        icon: '<i class="fa fa-warning"></i>',
-                        timeout: 10000
-                    });
-                    $("#newpass").focus();
-                    return false;
-                }
+            if (password == '') {
+                Notifi.addNotification({
+                    color: 'danger',
+                    text: newpassReq,
+                    icon: '<i class="fa fa-warning"></i>',
+                    timeout: 10000
+                });
+                $("#newpass").focus();
+                return false;
+            }
 
-                
+
             Login();
 
 
-                // Start the AJAX
-                var post_data = {
-                    'username': username,
-                    'useremail': useremail,
-                    'password': password,
-                    'requestType': 'signup'
-                };
-                $.post('./api.php?signin', post_data, function (data) {
-                    if (data == '1') {
-                        // All is good!
-                        Notifi.addNotification({
-                            color: 'success',
-                            text: newAccCreated,
-                            icon: '<i class="fa fa-check"></i>',
-                            timeout: 10000
-                        });
+            // Start the AJAX
+            var post_data = {
+                'username': username,
+                'useremail': useremail,
+                'password': password,
+                'requestType': 'signup'
+            };
+            $.post('./api.php?signin', post_data, function (data) {
+                if (data == '1') {
+                    // All is good!
+                    Notifi.addNotification({
+                        color: 'success',
+                        text: newAccCreated,
+                        icon: '<i class="fa fa-check"></i>',
+                        timeout: 10000
+                    });
 
-                        // Reset the form fields
-                        $("#newusername, #newemail, #newpass").val('');
-                    } else {
-                        // Unknown error
-                        Notifi.addNotification({
-                            color: 'danger',
-                            text: newAccError,
-                            icon: '<i class="fa fa-warning"></i>',
-                            timeout: 12000
-                        });
-                    }
-                });
+                    // Reset the form fields
+                    $("#newusername, #newemail, #newpass").val('');
+                } else {
+                    // Unknown error
+                    Notifi.addNotification({
+                        color: 'danger',
+                        text: newAccError,
+                        icon: '<i class="fa fa-warning"></i>',
+                        timeout: 12000
+                    });
+                }
+            });
         });
 
         $('#resetPass').click(function (e) {
@@ -257,7 +259,7 @@ class signIn {
             }
 
             // Start the AJAX
-            var   post_data = {
+            var post_data = {
                 'useremail': useremail,
                 'requestType': 'resetpass'
             };

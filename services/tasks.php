@@ -2,7 +2,6 @@
 
 namespace vandash\services;
 
-use vandash\includes\Functions;
 use vandash\includes\txtDB;
 
 class tasks
@@ -30,8 +29,8 @@ class tasks
 
         $db->deleteWhere('tasks.txt', new AndWhereClause(new SimpleWhereClause(TASK_ID, '=', $taskid, $_ENV['STRING_COMPARISON'])));
 
-        unlink ($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt');
-        unlink ($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt.lock');
+        unlink($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt');
+        unlink($_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt.lock');
 
         $checkFile = $_ENV['APP_DIR'] . '/data/tasks/' . $taskid . '.txt';
 

@@ -2,7 +2,6 @@
 
 namespace vandash\services;
 
-use vandash\includes\Functions;
 use vandash\includes\txtDB;
 
 class newnote

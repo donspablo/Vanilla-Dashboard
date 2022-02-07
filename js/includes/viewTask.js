@@ -1,14 +1,14 @@
-var taskTitleReq = "The Task's Title can not be empty.";
-var assignedDateReq = "The Task's Assigned Date can not be empty.";
-var dueDateReq = "The Task's Due Date can not be empty.";
-var taskDescReq = "The Task's Description can not be empty.";
-var taskUpdatedMsg = 'Cheer! The Task has been updated.';
-var updateError = 'Whoops, looks like an unexpected error was encountered, and the Task could not be updated at this time.';
-var taskCompOnText = 'Completed Task on';
+
 
 class viewTask {
     constructor() {
-
+        var taskTitleReq = "The Task's Title can not be empty.";
+        var assignedDateReq = "The Task's Assigned Date can not be empty.";
+        var dueDateReq = "The Task's Due Date can not be empty.";
+        var taskDescReq = "The Task's Description can not be empty.";
+        var taskUpdatedMsg = 'Cheer! The Task has been updated.';
+        var updateError = 'Whoops, looks like an unexpected error was encountered, and the Task could not be updated at this time.';
+        var taskCompOnText = 'Completed Task on';
         loadStatus();
 
         $('#taskSave, #saveTask').click(function (e) {
